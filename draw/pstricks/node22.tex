@@ -1,0 +1,153 @@
+\documentclass[11pt]{article}% Michael Sharpe
+\usepackage{pstricks}
+\usepackage{pstricks-add}
+\pagestyle{empty}
+%macro to make polyline joining sequence of nodes
+\def\psnline#1(#2,#3)#4{\xdef\tmp{#1}\multido{\i=#2+1}{#3}%
+{\xdef\tmp{\tmp(#4\i)}}\expandafter\psline\tmp}
+%\psnline[linecolor=red,arrows=->](0,101){P} expands to
+% \psline[linecolor=red,arrows=->](P0)(P1)...(P100)
+% assuming P0,...,P100 are previously defined nodes.
+
+\makeatletter
+% build the linear combination #3[1]]*#1+#3[[2]]*#2=#4
+\def\psLCNodeVar(#1)(#2)(#3)#4{%
+  \pst@getcoor{#1}\pst@tempA%
+  \pst@getcoor{#2}\pst@tempB%
+  \pnode(#3){tmpn@de}
+  \pnode(!%
+    \pst@tempA /YA exch \pst@number\psyunit div def
+    /XA exch \pst@number\psxunit div def
+    \pst@tempB /YB exch \pst@number\psyunit div def
+    /XB exch \pst@number\psxunit div def %stack now empty
+    \psGetNodeCenter{tmpn@de}\space
+    XA tmpn@de.x mul XB tmpn@de.y mul add
+    YA tmpn@de.x mul YB tmpn@de.y mul add){#4}%
+}
+\makeatother
+\begin{document}
+\SpecialCoor
+% Given two sequences of pnodes, P0...Pn, Q0...Qn, draw polyline joining
+% some interpolating points R0...Rn
+\begin{pspicture}[showgrid=true](-5,-3)(5,3)
+\multido{\i=0+1}{361}{%
+\pnode(! \i\space dup cos 3 mul exch sin 2 mul){P\i}%points on inner  ellipse
+\pnode(! \i\space dup cos 5 mul exch sin 3 mul){Q\i}%points on outer  ellipse
+\pnode(! \i\space 3 mul cos dup mul dup 1 sub neg){C\i}%coefficients
+\psLCNodeVar(P\i)(Q\i)(C\i){R\i}% define interpolating points
+}
+\psnline(0,361){P}\psnline(0,361){Q}
+\psnline[linewidth=1.7pt,linecolor=red](0,361){R}
+\end{pspicture}
+\end{document}
+
+
+
+
+\listfiles
+\documentclass[11pt]{article}
+%\usepackage{amsmath, amssymb}
+\usepackage[dvipsnames, svgnames]{pstricks}
+\usepackage{pst-solides3d}
+
+\begin{document}
+
+\begin{pspicture}(-6,-3)(6,3)
+\psset{unit=1.5}
+\defFunction{mobius}(u,v)
+  {2 u v Cos mul add 2 v mul Cos mul}
+  {2 u v Cos mul add 2 v mul Sin mul}
+  {u v Sin mul}
+\defFunction{centercircle}(t){2 t mul Cos 2 mul}{2 t mul Sin 2 mul}{0}
+\psset[pst-solides3d]{viewpoint=20 10 5,Decran=40,lightsrc=10 20 10}
+\psSolid[object=surfaceparametree, linewidth=0.5\pslinewidth,
+  base=-0.5 0.5 0 pi, fillcolor=lightgray!30, incolor=white,
+  function=mobius,ngrid=.05]
+\psSolid[object=courbe, range= 0 pi,
+linewidth=1.75pt, linecolor=blue,
+function=centercircle, ngrid=1,r=0] 
+
+\end{pspicture}
+
+\end{document}
+
+
+
+
+
+\documentclass{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage{array}
+\usepackage{tabularx}
+\renewcommand\tabularxcolumn[1]{b{#1}}
+
+\begin{document}
+
+ \begin{minipage}{8cm}
+ \begin{tabularx}{\linewidth}{r@{\quad}X@{}l}
+ 01 & Damit die Zeile nicht so lang ist, 
+      erstellen wir eine Minipage\dotfill &  03:45 \\
+ 02 & Eine kurze Zeile\dotfill &  05:34 \\
+ 03 & Damit die Zeile nicht so lang ist, 
+      erstellen wir eine Minipage\dotfill & 03:45 
+\end{tabularx}
+\end{minipage}
+
+\end{document}
+
+
+
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{pstricks-add}
+\parindent=0pt
+
+\begin{document}
+
+\psset{xunit=8,yunit=3}
+\begin{pspicture}(-0.5,-1.5)(1,1.5)
+  \psgrid[griddots=10,gridlabels=0pt](0,-1)(1,1)
+  \psaxes[Dx=0.2,Oy=-1,Dy=0.4,tickstyle=top,
+          axesstyle=frame](0,-1)(1,1)
+ \rput(0.5,1.3){Curves example}
+ \rput(-0.3,0){\shortstack{%
+   \textcolor{blue}{$\dfrac{x}{(x + 0.3)}$}\\
+      \textcolor{red}{$\sin (10 \times x) / 2$}}}
+  \rput(0.5,-1.3){\shortstack{$x$\\Sample plots}}
+  \psplot[linecolor=red,linewidth=2pt]% 1 radian = 57.296 degrees
+         {0}{1}{x 10 mul 57.296 mul sin 0.5 mul}  % sin(10 x) / 2
+  \psplot[linecolor=blue,linewidth=2pt]%
+      {0}{1}{x 0.3 x add div} % x / (x + 0.3)
+\end{pspicture}
+
+\end{document}
+
+\readdata{\data}{2.txt}
+%\readdata{\dataA}{22.txt}
+
+\pstScalePoints(1,1){9.3333 sub neg 7 add }{}
+\psset{llx=-5mm,lly=-5mm}
+\begin{psgraph}[yAxis=false,Dx=0.2,dx=-0.2,Ox=9.4](7,0)(9.4,4){\linewidth}{7cm}
+\listplot[linecolor=red,linewidth=0.6pt]{\data}
+%\listplot[linecolor=blue,linewidth=0.6pt]{\dataA}
+\end{psgraph}
+
+
+\psset{xunit=6.3cm,yunit=1cm}
+\begin{pspicture}(7,0)(9.4,4)
+\psaxes[yAxis=false,Dx=0.2,dx=-0.2,Ox=9.4](7,0)(9.4,4)
+\listplot[linewidth=0.5pt]{\data}
+%\listplot[linewidth=0.5pt]{\dataII}
+\uput[-90](1,-0.5){$\delta$ / ppm}
+\end{pspicture}
+
+\end{document}
+
+
+
+     coorType 4 le { % coorType |/_ with a 1/sqrt(2) shortend x-axis 
+and 135 degrees
+       /x2D x -1 mul 2 y mul add z 0 mul add  def %% z 0 mul --> not 
+really useful
+       /y2D x -1 mul -0.5 y mul add z 2 mul add def
+       exit } if

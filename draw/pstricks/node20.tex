@@ -1,0 +1,68 @@
+\documentclass[landscape,a4paper]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[dvips,margin=1cm]{geometry}
+\usepackage{lmodern,pst-node}
+\SpecialCoor
+
+\newcommand\xstrut{\vphantom{\tabular{c}Üg\\Üg\endtabular}}
+\newcommand\psBox[3][white]{\rput(#2){\rnode{#2}{%
+  \psframebox[fillcolor=#1]{\xstrut\makebox[3.2cm]{\tabular{c}#3\endtabular}}}}}
+\begin{document}
+
+\psset{framearc=0.2,shadow=true,fillstyle=solid,shadowcolor=black!55}
+\begin{pspicture}(-1,-1)(21,7)
+\psBox[blue!30]{7,6}{politische\\Kommunikation}
+\psBox[red!30]{3,4}{interpersonale\\Kommunikation} 
+	\psBox[red!30]{13,4}{massenmediale\\Kommunikation} 
+\psBox[green!30]{1,2}{starke\\Beziehung}
+	\psBox[green!30]{5,2}{schwache\\Beziehung} 
+	\psBox[green!30]{9,2}{Fernsehen}
+	\psBox[green!30]{17,2}{Zeitungen}
+\psBox[cyan!30]{7,0}{öffentlich-rechtliches\\Fernsehen}
+	\psBox[cyan!30]{11,0}{privates\\Fernsehen}
+	\psBox[cyan!30]{15,0}{Boulevard-\\Zeitungen}
+	\psBox[cyan!30]{19,0}{Abonnement-\\Zeitungen}
+\end{pspicture}
+
+\psset{shadow=false,angleA=-90,angleB=90,linewidth=2pt}
+\ncangles{7,6}{3,4}\ncangles{7,6}{13,4}
+\ncangles{3,4}{1,2}\ncangles{3,4}{5,2}
+\ncangles{13,4}{9,2}\ncangles{13,4}{17,2}
+\ncangles{9,2}{7,0}\ncangles{9,2}{11,0}
+\ncangles{17,2}{15,0}\ncangles{17,2}{19,0}
+
+
+\begin{verbatim}
+\usepackage{lmodern,pst-node}
+\SpecialCoor
+
+\newcommand\xstrut{\vphantom{\tabular{c}Üg\\Üg\endtabular}}
+\newcommand\psBox[3][white]{\rput(#2){\rnode{#2}{%
+  \psframebox[fillcolor=#1]{\xstrut\makebox[3.2cm]{\tabular{c}#3\endtabular}}}}}
+\begin{document}
+
+\psset{framearc=0.2,shadow=true,fillstyle=solid,shadowcolor=black!55}
+\begin{pspicture}(-1,-1)(21,7)
+\psBox[blue!30]{7,6}{politische\\Kommunikation}
+\psBox[red!30]{3,4}{interpersonale\\Kommunikation} 
+	\psBox[red!30]{13,4}{massenmediale\\Kommunikation} 
+\psBox[green!30]{1,2}{starke\\Beziehung}
+	\psBox[green!30]{5,2}{schwache\\Beziehung} 
+	\psBox[green!30]{9,2}{Fernsehen}
+	\psBox[green!30]{17,2}{Zeitungen}
+\psBox[cyan!30]{7,0}{öffentlich-rechtliches\\Fernsehen}
+	\psBox[cyan!30]{11,0}{privates\\Fernsehen}
+	\psBox[cyan!30]{15,0}{Boulevard-\\Zeitungen}
+	\psBox[cyan!30]{19,0}{Abonnement-\\Zeitungen}
+\end{pspicture}
+
+\psset{shadow=false,angleA=-90,angleB=90,linewidth=2pt}
+\ncangles{7,6}{3,4}\ncangles{7,6}{13,4}
+\ncangles{3,4}{1,2}\ncangles{3,4}{5,2}
+\ncangles{13,4}{9,2}\ncangles{13,4}{17,2}
+\ncangles{9,2}{7,0}\ncangles{9,2}{11,0}
+\ncangles{17,2}{15,0}\ncangles{17,2}{19,0}
+\end{verbatim}
+
+\end{document}

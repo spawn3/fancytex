@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{pst-tree,pstricks-add}
+\SpecialCoor
+\def\psedge#1#2{\ncline[linecolor=black]{#1}{#2}}
+\def\Bogen#1#2#3{%
+\psarc[linecolor=black](#1){1cm}%
+  {!\psGetNodeCenter{#1} \psGetNodeCenter{#2} 
+    #1.y #2.y sub abs #1.x #2.x sub abs atan 180 add}%
+  {!\psGetNodeCenter{#3} 
+    #1.y #3.y sub abs #1.x #3.x sub abs atan neg 360 add}%
+}
+
+\pagestyle{empty}
+\begin{document}
+
+\psset{framesize=1.5 1,linecolor=blue!30,levelsep=3cm}
+\pstree{\Tf*[name=A]}{%
+  \Tf*[name=B]
+  \Tf*
+  \Tf*
+  \pstree{\Tf*[name=D]}{%
+    \Tf*[name=D1]
+    \Tf*[name=D2]
+  }
+}
+\Bogen{A}{B}{D}\uput{1.2cm}[-30](A){Test1}
+\Bogen{D}{D1}{D2}\uput{1cm}[-50](D){Test2}
+
+\bigskip
+\small
+\begin{verbatim}
+\usepackage{pst-tree,pstricks-add}
+\SpecialCoor
+\def\psedge#1#2{\ncline[linecolor=black]{#1}{#2}}
+\def\Bogen#1#2#3{%
+\psarc[linecolor=black](#1){1cm}%
+  {!\psGetNodeCenter{#1} \psGetNodeCenter{#2} 
+    #1.y #2.y sub abs #1.x #2.x sub abs atan 180 add}%
+  {!\psGetNodeCenter{#3} 
+    #1.y #3.y sub abs #1.x #3.x sub abs atan neg 360 add}%
+}
+
+\pagestyle{empty}
+\begin{document}
+
+\psset{framesize=1.5 1,linecolor=blue!30,levelsep=3cm}
+\pstree{\Tf*[name=A]}{%
+  \Tf*[name=B]
+  \Tf*
+  \Tf*
+  \pstree{\Tf*[name=D]}{%
+    \Tf*[name=D1]
+    \Tf*[name=D2]
+  }
+}
+\Bogen{A}{B}{D}\uput{1.2cm}[-30](A){Test1}
+\Bogen{D}{D1}{D2}\uput{1cm}[-50](D){Test2}
+\end{verbatim}
+\end{document}

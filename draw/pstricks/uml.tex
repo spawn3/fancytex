@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{pst-uml}
+\makeatletter
+% For debugging (to debug, set PstDebug=1)
+\def\psset@PstDebug#1{\pst@getint{#1}\pst@PstDebug}
+\psset{PstDebug=0}
+% From Maurice Diamantini <diam@ensta.fr> (from the `pst-uml' package)
+% --------------------------------------------------------------------
+\newsavebox{\Classi}\savebox{\Classi}{%
+\umlClass{Classe1}{%
+  umlClassWidth = 0 \\
+ (par d\'efaut) \\\hline
+ Attribut2 Tres tres longue ligne \\ \hline 
+ Attribut3 \\ \hline %
+ M\'ethode1%
+}}
+\psset{umlClassWidth=4cm}
+\newsavebox{\Classii}\savebox{\Classii}{%
+\umlClass{Classe2}{%
+ Defaut = 4cm \\ \hline
+ Attribut2 \\ \hline %
+ M\'ethode1\\
+ M\'ethode2%
+}}
+\newsavebox{\Classiii}\savebox{\Classiii}{%
+\umlClass[umlClassWidth=2.7]{Classe3}{%
+ Defaut = 4cm \\
+ umlClassWidth = 2.7 \\ \hline 
+ Methode1 \\
+ Methode2}}
+% Classe4 doit retrouver la nouvelle valeur par d\'efaut de 4cm
+\newsavebox{\Classiv}\savebox{\Classiv}{%
+\umlClass{Classe4}{%
+ Defaut = 4cm \\
+ MonAttribut2 \\ \hline 
+ Methode1}}
+% Classe5 : largeur automatique et titre seul
+\newsavebox{\Classv}\savebox{\Classv}{%
+\umlClass[umlClassWidth=0]{Classe5}{}}
+
+% Inspired by an idea of Sebastian Rahtz <s.rahtz@elsevier.co.uk>
+% (LGC, example 4-10-10)
+% ----------------------------------------------------------
+
+% Direction is: 0 right, 1 left, 2 up, 3 down
+\def\Pst@Direction{-1}
+
+% Default position (down left, as PSTricks default)
+\def\Pst@PosX{0}
+\def\Pst@PosY{0}
+
+% Show position
+\def\ShowPosition{%
+\typeout{%
+\ifcase\Pst@Direction Direction: right, now at
+        \or Direction: left, \space now at
+        \or Direction: up, \space\space\space now at
+        \or Direction: down, \space now at
+        \else At
+\fi
+(\Pst@PosX,\Pst@PosY)}}
+
+% Set position
+\def\SetX#1{%
+\edef\Pst@PosX{#1}%
+\ifnum\pst@PstDebug=\@ne\ShowPosition\fi}
+
+\def\SetY#1{%
+\edef\Pst@PosY{#1}
+\ifnum\pst@PstDebug=\@ne\ShowPosition\fi}
+
+% Moves
+\def\Down#1{%
+\edef\Pst@Direction{3}%
+\pst@dima=\Pst@PosY pt
+\advance\pst@dima by -#1 pt
+\pst@dimtonum{\pst@dima}{\Pst@@CurY}
+\edef\Pst@PosY{\Pst@@CurY}%
+\ifnum\pst@PstDebug=\@ne\ShowPosition\fi}
+
+\def\Up#1{%
+\edef\Pst@Direction{2}%
+\pst@dima=\Pst@PosY pt
+\advance\pst@dima by #1 pt
+\pst@dimtonum{\pst@dima}{\Pst@@CurY}
+\edef\Pst@PosY{\Pst@@CurY}%
+\ifnum\pst@PstDebug=\@ne\ShowPosition\fi}
+
+\def\Left#1{%
+\edef\Pst@Direction{1}%
+\pst@dima=\Pst@PosX pt
+\advance\pst@dima by -#1 pt
+\pst@dimtonum{\pst@dima}{\Pst@@CurX}
+\edef\Pst@PosX{\Pst@@CurX}%
+\ifnum\pst@PstDebug=\@ne\ShowPosition\fi}
+
+\def\Right#1{%
+\edef\Pst@Direction{0}%
+\pst@dima=\Pst@PosX pt
+\advance\pst@dima by #1 pt
+\pst@dimtonum{\pst@dima}{\Pst@@CurX}
+\edef\Pst@PosX{\Pst@@CurX}%
+\ifnum\pst@PstDebug=\@ne\ShowPosition\fi}
+
+% Put an object at current coordinates and assign a node of specified name to it
+\def\NodePut{%
+\@ifnextchar[\@NodePut{\@NodePut[]}}
+\def\@NodePut[#1]#2#3{{%
+\setkeys{psset}{#1}%
+\rput(\Pst@PosX,\Pst@PosY){\rnode{#2}{#3}}}}
+
+\makeatother
+
+\textheight=25cm
+\topmargin=-3cm
+
+\pagestyle{empty}
+
+\begin{document}
+
+\psset{PstDebug=1}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-2.7,-1)(11,8.8)
+  \SetY{7.5}
+  \NodePut{Class1}{\usebox{\Classi}}
+  \Right{6}
+  \NodePut{Actor1}{\umlActor{Actor 1}}
+  \Right{3}
+  \Down{3.5}
+  \NodePut{Class2}{\usebox{\Classii}}
+  \Left{7}
+  \Down{4}
+  \NodePut{Class4}{\usebox{\Classiv}}
+  % Connections
+  \psset{arrows=->,arrowscale=2}
+  \ncline{Class1}{Actor1}
+  \ncSE{Class1}{Class2}
+  \ncSHS{Class2}{Class4}\naput{ncSHS}
+\end{pspicture}
+}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-0.7,-0.7)(9,6.3)
+  \SetY{1}
+  \NodePut{Actor1}{\umlActor{Actor 1}}
+  \Up{4}
+  \Right{3}
+  \NodePut{Actor2}{\umlActor[linecolor=red]{Actor 2}}
+  \Right{5}
+  \NodePut{Actor3}{\umlActor[xunit=2,yunit=0.7,linecolor=green]{Actor 3}}
+  \Left{2}
+  \Down{4}
+  \NodePut{Actor4}{\umlActor[yunit=1.5,linecolor=cyan]{Actor 4}}
+  % Connections
+  \psset{arrows=->,arrowscale=2}
+  \ncNHN{Actor1}{Actor2}
+  \ncline{Actor2}{Actor3}
+  \ncSXE[arm=1]{Actor3}{Actor4}
+\end{pspicture}
+}
+
+\end{document}

@@ -1,0 +1,136 @@
+% The tkz-2d package
+% Author: Alain Matthes (http://altermundus.fr/)
+
+\documentclass[]{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows,%
+                plotmarks}
+\usepackage{tkz-2d}
+\usepackage[np,autolanguage]{numprint}
+\usepackage{verbatim}
+
+\begin{comment}
+:Title: The tkz-2d package
+:Slug: tkz-2d
+:Tags: Diagrams
+:Grid: 2x2
+
+The package ``tkz-2d`` is a set of convenient macros for drawing in a plane ( fundamental
+two-dimensional object) with a Cartesian coordinate system. The package aims to
+provide a high-level user interface to build graphics relatively simply.
+
+The package is written by the very productive Alain Matthes. Documentation_, with an 
+impressive number of examples, is now available in English. 
+
+:Download: `Altermundus`_
+:Author: `Alain Matthes`_
+:Source: `Altermundus`_
+
+.. _Alain Matthes: http://altermundus.fr/index.html
+.. _Altermundus: http://altermundus.fr/pages/download.html
+.. _examples: http://www.altermundus.fr/pages/math/graphtheory.html
+.. _Documentation: http://altermundus.fr/pages/downloads/TKZdoc-2d.pdf
+
+
+\end{comment}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+  \tkzInit[ymin=-1]
+  \path[coordinate] (0,0) coordinate(A)%
+                    (6,0) coordinate(D)
+                    (8,0) coordinate(B)
+                    (4,0) coordinate(I);
+  \tkzDrawPoint[color=red](A,B,D)
+  \tkzSegment(A/B)
+  \clip (A)--(9,0)--(9,6)--(0,6)--cycle;
+  \tkzCircle*(A,B)
+  \tkzLineOrth[kr=1,kl=0](A,D)(D)
+  \tkzInterLCR(D,dr)(I,4 cm){C}{J}
+  \tkzDrawPoint[color=red,pos=above right](C)
+  \tkzLineOrth[kr=1,kl=1,prefix=t1](I,C)(C)
+  \tkzLineOrth[kr=1,kl=0,prefix=t2](A,B)(B)
+  \tkzInterLL[color=red](C,t1r)(B,t2r){T}
+  \tkzInterLL[color=red](A,T)(C,D){P}
+  \tkzSegment(A/T)
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale = 1.75]
+   \tkzInit[xmax = 8,ymax=8] \tkzClip
+   \tkzPoint*(0,0){B} \tkzPoint*(8,0){C}%
+   \tkzPoint*(0,8){A} \tkzPoint*(8,8){D}
+   \tkzPolygon(B,C,D,A)
+   \path[clip] (B)--(C)--(D)--(A)--cycle;
+   \tkzPoint*(4,8){F}\tkzPoint*(4,0){E}\tkzPoint*(4,4){Q}
+   \tkzTgtFromP(F,F,A)(B){G}{H}
+   \tkzInterLL*(F,G)(C,D){J}
+   \tkzInterLL*(A,J)(F,E){K}
+   \tkzProjection*(B,A)(K/M)
+   \tkzFillPolygon[color = green](A,B,C,D)
+   \tkzCircle[style = {fill = orange}](B,A)
+   \tkzCircle[style = {fill = blue!50!black}](M,A)
+   \tkzCircle[style = {fill = purple}](E,B)
+   \tkzCircle[style = {fill = yellow}](K,Q)
+\end{tikzpicture}
+
+\begin{tikzpicture}
+   \tkzInit[xmin=-1,xmax=1.2,xstep=.2,ymin=-1,ymax=1.2,ystep=.2]
+   \tkzX[gradsize=\scriptstyle]
+   \tkzY[gradsize=\scriptstyle]
+   \tkzPoint(0,0){O}
+   \tkzPoint[pos=above right](1,0){A}
+   \FPcos\Mx{1}\FPsin\My{1}
+   \tkzPoint[pos=above right](1,1){T}
+   \tkzPoint[coord,%
+             mark     = *,%
+             size     = 1pt,%
+             pos      = above right](\Mx,\My){M}
+   \tkzSegment[color=red,colorlabel=red,label=1\,u](A/T,O/M)
+   \draw[color=blue] (0,0) circle (5cm);
+   \path (A) arc (0:40:5) node[rotate=-45,above,color=red] {1\,u};
+   \begin{scope}
+   \path[clip](O)--(A)--(M)--cycle;
+   \draw[color=blue,fill=red] (0,0) circle (.5cm);
+   \end{scope}
+   \begin{scope}
+   \path[clip](O)--(A)--(T)--(M)--cycle;
+   \draw[color=red] (0,0) circle (5cm);
+   \end{scope}
+   \path[clip] (0,0) circle (5cm);\tkzGrid(-1,-1)(1,1)
+   \tkzText[color= red](0.3,0.15){$1$\,rad}
+   \tkzText[style={draw},color= red](0.55,-0.15){$\scriptstyle\cos(1)$}
+  \tkzText[style={draw},color= red](-0.23,0.83){$\scriptstyle\sin(1)$}
+ \end{tikzpicture}  
+ 
+\begin{tikzpicture}
+    \tkzInit\tkzClip
+    \tkzPoint[pos=below right](2,1){A}%
+    \tkzPoint[pos=below](9,4){B}%
+    \tkzPoint[pos=below left](3,7){C}%
+    \tkzLine(A/B,B/C,A/C)
+    \tkzBisector[kl=0,kr=3,color=blue,style=dashed](B,A,C){x}
+    \tkzBisector[kl=0,kr=3,color=blue,style=dashed](A,B,C){y}
+    \tkzInterLL(A,x)(B,y){I}
+    \tkzProjection*(A,B)(I/c)
+    \tkzProjection*(A,C)(I/b)
+    \tkzProjection*(B,C)(I/a)
+    \tkzSegment[color=red,style=dotted,lw=1pt](I/a,I/b,I/c)
+    \tkzRightAngle(A/c/I,B/a/I,C/b/I)
+    \tkzMarkAngle[size = 1,%
+        style = ai,%
+        fillcolor = red!50](I/A/C)
+    \tkzMarkAngle[size = 0.75,%
+        style = ai,%
+        fillcolor = red!50](I/A/B)
+    \tkzMarkAngle[size = 1,%
+        style = aii,%
+        fillcolor = blue!50](I/B/C)
+    \tkzMarkAngle[size = 0.75,%
+        style = aii,%
+        fillcolor = blue!50](I/B/A)
+    \tkzCircle(I,a)
+\end{tikzpicture}
+
+\end{document}

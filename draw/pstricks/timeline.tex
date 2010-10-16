@@ -1,0 +1,61 @@
+\documentclass[12pt,ngerman]{article}
+\usepackage{pst-grad}
+\usepackage{pstricks-add}
+\usepackage{babel}
+\SpecialCoor
+\newsavebox\TBox
+\pagestyle{empty}
+\psset{gradbegin=white,gradend=lightgray}
+\newcommand\BoxText[4][3cm]{%
+  \savebox\TBox{\parbox{#1}{#4}}
+  \rput[t](#2){\psframebox[fillstyle=gradient]{\usebox\TBox}}%
+  \pnode(#2|0,0){A}\pnode(#2){B}
+  \ncline{->}{A}{B}%
+  \uput*{0.5cm}[-90](A){\footnotesize #3}%
+}
+\begin{document}
+
+\begin{pspicture}(0,0.25)(2.5,-10)
+\psset{xunit=5}
+\psaxes[yAxis=false,Ox=1518]{|->}(0,0)(2.5,-10)% 
+\BoxText[4cm]{1.1123,-5.5}{10.2.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\BoxText{.767,-2}{15.10.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\end{pspicture}
+
+\begin{verbatim}
+\begin{pspicture}(0,0.25)(2.5,-10)
+\psset{xunit=5}
+\psaxes[yAxis=false,Ox=1518]{|->}(0,0)(2.5,-10)% 
+\BoxText[4cm]{1.1123,-5.5}{10.2.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\BoxText{.767,-2}{15.10.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\end{pspicture}
+\end{verbatim}
+
+\begin{pspicture}(0,0.25)(2.5,-10)
+\psset{xunit=5cm}
+\psaxes[yAxis=false,Ox=1518]{|->}(0,0)(2.5,-10)%
+\BoxText{.787,-5}{17.10.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\pnode(A){A0}
+\BoxText{.767,-2}{15.10.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\uput*{1.2cm}[-90](A0){\footnotesize 17.10.}%
+\end{pspicture}
+
+\begin{verbatim}
+\begin{pspicture}(0,0.25)(2.5,-10)
+\psset{xunit=5cm}
+\psaxes[yAxis=false,Ox=1518]{|->}(0,0)(2.5,-10)%
+\BoxText{.787,-5}{17.10.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\pnode(A){A0}
+\BoxText{.767,-2}{15.10.}{%
+Hier muss jetzt irgendetwas hinkommen, was, weiss ich auch nicht genau}
+\uput*{1.2cm}[-90](A0){\footnotesize 17.10.}%
+\end{pspicture}
+\end{verbatim}
+\end{document}

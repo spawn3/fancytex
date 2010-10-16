@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+\usepackage{pst-node}
+\usepackage{multido}
+\begin{document}
+\psset{unit=1pt}
+\addtolength{\tabcolsep}{-3pt}
+\begin{tabular}{lp{3cm}cl}
+1\quad\cnode*{2}{I} &  &  & bla\\
+          &  &  \cnode*{2}{1} & bla\\
+          &  &  & bla\\
+2\quad\cnode*{2}{II}&  &  & oho\\
+          &  &  \cnode*{2}{2} & oho\\
+          &  &  & oho\\
+          &  &  & tja\\
+          &  &  \cnode*{2}{3} & tja\\
+          &  &  & tja\\
+          &  &  & hmm\\
+          &  &  \cnode*{2}{4} & hmm\\
+          &  &  & hmm\\
+          &  &  & bla\\
+          &  &  \cnode*{2}{5} & bla\\
+          &  &  & bla\\
+          &  &  & oho\\
+          &  &  \cnode*{2}{6} & oho\\
+          &  &  & oho\\
+          &  &  & tja\\
+          &  &  \cnode*{2}{7} & tja\\
+          &  &  & tja\\
+          &  &  & hmm\\
+          &  &  \cnode*{2}{8} & hmm\\
+          &  &  & hmm
+\end{tabular}
+\psset{nodesep=0.1,linewidth=0.5pt}
+\multido{\n=1+1}{8}{%
+    \ncline[linecolor=red]{I}{\n}%
+    \ncline[linecolor=blue]{II}{\n}%
+}
+
+\bigskip
+\begin{verbatim}
+\usepackage{pst-node}
+\usepackage{multido}
+\begin{document}
+\psset{unit=1pt}
+\addtolength{\tabcolsep}{-3pt}
+\begin{tabular}{lp{3cm}cl}
+1\quad\cnode*{2}{I} &  &  & bla\\
+          &  &  \cnode*{2}{1} & bla\\
+          &  &  & bla\\
+2\quad\cnode*{2}{II}&  &  & oho\\
+          &  &  \cnode*{2}{2} & oho\\
+          &  &  & oho\\
+          &  &  & tja\\
+          &  &  \cnode*{2}{3} & tja\\
+          &  &  & tja\\
+          &  &  & hmm\\
+          &  &  \cnode*{2}{4} & hmm\\
+          &  &  & hmm\\
+          &  &  & bla\\
+          &  &  \cnode*{2}{5} & bla\\
+          &  &  & bla\\
+          &  &  & oho\\
+          &  &  \cnode*{2}{6} & oho\\
+          &  &  & oho\\
+          &  &  & tja\\
+          &  &  \cnode*{2}{7} & tja\\
+          &  &  & tja\\
+          &  &  & hmm\\
+          &  &  \cnode*{2}{8} & hmm\\
+          &  &  & hmm
+\end{tabular}
+\psset{nodesep=0.1,linewidth=0.5pt}
+\multido{\n=1+1}{8}{%
+    \ncline[linecolor=red]{I}{\n}%
+    \ncline[linecolor=blue]{II}{\n}%
+}
+\end{verbatim}
+
+\end{document} 

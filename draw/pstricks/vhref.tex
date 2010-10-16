@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{pstricks,pst-node}
+\SpecialCoor
+
+\pagestyle{empty}
+\begin{document}
+
+\begin{pspicture}[showgrid=true](-1,-1)(4,4)
+  \rput(0,0){\Rnode[href=-1.2,vref=-0.1]{A}{AAAA}}
+  \rput(3,3){\Rnode[href=1.2,vref=0.4]{B}{BBBB}}
+  \rput(3,0){\Rnode[href=1.2,vref=-0.1]{C}{CCCC}}
+\end{pspicture}
+
+\pspolygon[linewidth=1pt,linecolor=red](A)(A|B)(B)(C)
+
+\begin{pspicture}[showgrid=true](-1,-1)(4,4)
+  \rput(0,0){\Rnode[href=-1.5,vref=-0.1]{A}{AAAA}}
+  \rput(3,3){\Rnode[href=-0.8,vref=0.4]{B1}{%
+               \Rnode[href=1.2,vref=0.4]{B2}{BBBB}}}
+  \rput(3,0){\Rnode[href=1.2,vref=-0.1]{C}{CCCC}}
+\end{pspicture}
+
+\pspolygon[linewidth=1pt,linecolor=red](A)(B1)(B2)(C)
+
+\begin{verbatim}
+%\usepackage{pstricks,pst-node}
+\SpecialCoor
+
+\begin{pspicture}[showgrid=true](-1,-1)(4,4)
+  \rput(0,0){\Rnode[href=-1.2,vref=-0.1]{A}{AAAA}}
+  \rput(3,3){\Rnode[href=1.2,vref=0.4]{B}{BBBB}}
+  \rput(3,0){\Rnode[href=1.2,vref=-0.1]{C}{CCCC}}
+\end{pspicture}
+
+\pspolygon[linewidth=1pt,linecolor=red](A)(A|B)(B)(C)
+
+\begin{pspicture}[showgrid=true](-1,-1)(4,4)
+  \rput(0,0){\Rnode[href=-1.5,vref=-0.1]{A}{AAAA}}
+  \rput(3,3){\Rnode[href=-0.8,vref=0.4]{B1}{%
+               \Rnode[href=1.2,vref=0.4]{B2}{BBBB}}}
+  \rput(3,0){\Rnode[href=1.2,vref=-0.1]{C}{CCCC}}
+\end{pspicture}
+
+\pspolygon[linewidth=1pt,linecolor=red](A)(B1)(B2)(C)
+\end{verbatim}
+
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{pstricks,pst-node,pst-tree}
+\SpecialCoor
+\begin{document}
+
+\circlenode{a}{\Large A}\hspace{5cm}\circlenode{b}{\Large B}
+
+\vspace{3cm}
+\circlenode{c}{\Large C}
+\pspolygon[linestyle=dashed,linearc=0.5,fillstyle=solid,
+    fillcolor=green!30]%
+  ([offset=1,Xnodesep=-1]a)([offset=-1.5,Ynodesep=-0.75]c)%
+  ([offset=0.5,Xnodesep=2]b)%
+\cnodeput*(a){A}{\Large A}
+\cnodeput*(b){B}{\Large B}
+\cnodeput*(c){C}{\Large C}
+ 
+
+\vspace{2cm}
+\pstree{\TR[name=a]{A}}{
+  \TR[name=b]{B}
+  \TR[name=c]{C}
+}%
+\pspolygon[linestyle=dashed,fillstyle=solid,
+    fillcolor=red!40]%
+  (a|[offset=1]a)([offset=-0.7,Ynodesep=0.7]c)%
+  ([offset=-0.7,Xnodesep=-0.7]b)
+\color{blue}\bfseries
+\rput(a){\Large A}
+\rput(b){\Large B}
+\rput(c){\Large C}
+\ncline[linestyle=dashed]{a}{b}
+\ncline[linestyle=dashed]{a}{c}
+
+\vspace{1cm}
+\begin{verbatim}
+\circlenode{a}{\Large A}\hspace{5cm}\circlenode{b}{\Large B}
+
+\vspace{3cm}
+\circlenode{c}{\Large C}
+\pspolygon[linestyle=dashed,linearc=0.5,fillstyle=solid,
+    fillcolor=green!30]%
+  ([offset=1,Xnodesep=-1]a)([offset=-1.5,Ynodesep=-0.75]c)%
+  ([offset=0.5,Xnodesep=2]b)%
+\cnodeput*(a){A}{\Large A}
+\cnodeput*(b){B}{\Large B}
+\cnodeput*(c){C}{\Large C}
+ 
+
+\vspace{2cm}
+\pstree{\TR[name=a]{A}}{
+  \TR[name=b]{B}
+  \TR[name=c]{C}
+}%
+\pspolygon[linestyle=dashed,fillstyle=solid,
+    fillcolor=red!40]%
+  (a|[offset=1]a)([offset=-0.7,Ynodesep=0.7]c)%
+  ([offset=-0.7,Xnodesep=-0.7]b)
+\color{blue}\bfseries
+\rput(a){\Large A}
+\rput(b){\Large B}
+\rput(c){\Large C}
+\ncline[linestyle=dashed]{a}{b}
+\ncline[linestyle=dashed]{a}{c}
+\end{verbatim}
+\end{document}

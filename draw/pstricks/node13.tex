@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage{pstricks-add,pst-slpe}
+
+\parindent=0pt
+\begin{document}
+
+\begin{pspicture}(-0.5,-0.5)(6.5,6.5)
+{\psset{fillstyle=ccslope,slopebegin=magenta!40,slopeend=yellow}
+\cnodeput(4,6){D}{\strut\boldmath$D$}
+\cnodeput(2,4){B}{\strut\boldmath$B$}
+\cnodeput(0,2){P}{\strut\boldmath$P$}
+\cnodeput(4,2){C}{\strut\boldmath$C$}
+\cnodeput(2,0){M}{\strut\boldmath$M$}
+\cnodeput(6,0){L}{\strut\boldmath$L$}
+}
+\newcommand\arc[4]{%
+  \ncline{#1}{#2}{#3}
+  \ncput{\colorbox{lightgray}{#4}}
+}
+\arc{->}{D}{B}{10}
+\arc{->}{B}{P}{10}
+\arc{<->}{P}{M}{4}
+\arc{<-}{M}{L}{10}
+\arc{<->}{M}{B}{10}
+\arc{->}{C}{B}{3}
+\arc{<->}{C}{D}{5}
+\arc{<->}{C}{M}{9}
+\arc{<->}{C}{L}{4}
+\ncarc[arcangle=30]{<->}{D}{L}
+\ncput{\colorbox{lightgray}{11}}
+\end{pspicture}
+
+\vfill
+\begin{pspicture}(-1.5,-0.5)(9.5,7.5)
+{\psset{fillstyle=ccslope,slopebegin=cyan!40,slopeend=yellow}
+  \cnodeput(0,0){K}{\strut\boldmath$K$}
+  \cnodeput(0,2){F}{\strut\boldmath$F$}
+  \cnodeput(-1,4){D}{\strut\boldmath$D$}
+  \cnodeput(3,7){H}{\strut\boldmath$H$}
+  \cnodeput(8,5){B}{\strut\boldmath$B$}
+  \cnodeput(9,2){N}{\strut\boldmath$N$}
+  \cnodeput(5,0){M}{\strut\boldmath$M$}
+  \cnodeput(3,1){S}{\strut\boldmath$S$}
+  \psset{arcangle=30,nrot=:U}
+}
+  \newcommand*\arc[3]{%
+    \ncarc{#1}{#2}
+    \ncput*{#3}
+  }
+  \newcommand*\rarc[3]{%
+    \ncarc{#2}{#1}
+    \ncput*[nrot=:D]{#3}
+  }
+  \arc{K}{F}{120}
+  \arc{H}{S}{650}
+  \arc{H}{M}{780}
+  \arc{D}{B}{490}
+  \arc{D}{M}{600}
+  \arc{B}{M}{580}
+  \arc{H}{N}{600}
+  \arc{F}{H}{490}
+  \rarc{S}{B}{630}
+  \rarc{S}{N}{210}
+  \rarc{S}{M}{230}
+\end{pspicture}
+
+\clearpage
+\small
+\begin{verbatim}
+\usepackage{pstricks-add,pst-slpe}
+
+\parindent=0pt
+\begin{document}
+
+\begin{pspicture}(-0.5,-0.5)(6.5,6.5)
+{\psset{fillstyle=ccslope,slopebegin=magenta!40,slopeend=yellow}
+\cnodeput(4,6){D}{\strut\boldmath$D$}
+\cnodeput(2,4){B}{\strut\boldmath$B$}
+\cnodeput(0,2){P}{\strut\boldmath$P$}
+\cnodeput(4,2){C}{\strut\boldmath$C$}
+\cnodeput(2,0){M}{\strut\boldmath$M$}
+\cnodeput(6,0){L}{\strut\boldmath$L$}
+}
+\newcommand\arc[4]{%
+  \ncline{#1}{#2}{#3}
+  \ncput{\colorbox{lightgray}{#4}}
+}
+\arc{->}{D}{B}{10}
+\arc{->}{B}{P}{10}
+\arc{<->}{P}{M}{4}
+\arc{<-}{M}{L}{10}
+\arc{<->}{M}{B}{10}
+\arc{->}{C}{B}{3}
+\arc{<->}{C}{D}{5}
+\arc{<->}{C}{M}{9}
+\arc{<->}{C}{L}{4}
+\ncarc[arcangle=30]{<->}{D}{L}
+\ncput{\colorbox{lightgray}{11}}
+\end{pspicture}
+
+\vfill
+\begin{pspicture}(-1.5,-0.5)(9.5,7.5)
+{\psset{fillstyle=ccslope,slopebegin=cyan!40,slopeend=yellow}
+  \cnodeput(0,0){K}{\strut\boldmath$K$}
+  \cnodeput(0,2){F}{\strut\boldmath$F$}
+  \cnodeput(-1,4){D}{\strut\boldmath$D$}
+  \cnodeput(3,7){H}{\strut\boldmath$H$}
+  \cnodeput(8,5){B}{\strut\boldmath$B$}
+  \cnodeput(9,2){N}{\strut\boldmath$N$}
+  \cnodeput(5,0){M}{\strut\boldmath$M$}
+  \cnodeput(3,1){S}{\strut\boldmath$S$}
+  \psset{arcangle=30,nrot=:U}
+}
+  \newcommand*\arc[3]{%
+    \ncarc{#1}{#2}
+    \ncput*{#3}
+  }
+  \newcommand*\rarc[3]{%
+    \ncarc{#2}{#1}
+    \ncput*[nrot=:D]{#3}
+  }
+  \arc{K}{F}{120}
+  \arc{H}{S}{650}
+  \arc{H}{M}{780}
+  \arc{D}{B}{490}
+  \arc{D}{M}{600}
+  \arc{B}{M}{580}
+  \arc{H}{N}{600}
+  \arc{F}{H}{490}
+  \rarc{S}{B}{630}
+  \rarc{S}{N}{210}
+  \rarc{S}{M}{230}
+\end{pspicture}
+\end{verbatim}
+
+
+\end{document}
+

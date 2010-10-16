@@ -1,0 +1,312 @@
+\documentclass{article}
+
+\usepackage{pst-tree}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% Version 1
+% ---------
+
+\newcommand{\MyNode}[1]{\Tr{\psframebox[fillcolor=blue!50,fillstyle=solid]{#1}}}
+
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 2
+% ---------
+
+\renewcommand{\MyNode}[1]{\Tr[ref=t]{\psframebox[fillcolor=red!50,fillstyle=solid]{#1}}}
+
+\vspace{1cm}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 3
+% ---------
+
+\begingroup
+\renewcommand{\MyNode}[1]{\Tr[ref=t]{\psframebox[fillcolor=green!50,fillstyle=solid]{#1}}}
+\renewcommand{\psedge}[2]{\ncangles[angleA=-90,angleB=90]{#1}{#2}}
+
+\vspace{1cm}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+
+% Version 4
+% ---------
+
+\renewcommand{\MyNode}[2][]{\Tr[ref=t]{#1{\psframebox[fillcolor=green!50,fillstyle=solid]{#2}}}}
+
+\vspace{1cm}
+\pstree{\MyNode[{\rnode[b]{PredA}}]{A}}
+       {\renewcommand{\pspred}{PredA}%
+        \MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode[{\rnode[b]{PredB}}]{\shortstack{BBB\\BB\\B}}}
+               {\renewcommand{\pspred}{PredB}%
+                \MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 5
+% ---------
+
+\makeatletter
+
+\newcommand{\MyRootNode}[1]{%
+\Tr[ref=t]{\Rnode{Pred\romannumeral\pstreelevel}{\psframebox[fillcolor=magenta!50,fillstyle=solid]{#1}}}}
+\newcommand{\UpdateRootNode}{%
+\pst@cnta=\pstreelevel
+\advance\pst@cnta\m@ne
+\def\pspred{Pred\romannumeral\pst@cnta}}
+
+\makeatother
+
+\vspace{1cm}
+\begingroup
+\psset{vref=0}
+\pstree{\MyRootNode{A}}
+       {\UpdateRootNode%
+        \MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyRootNode{\shortstack{BBB\\BB\\B}}}
+               {\UpdateRootNode%
+                \MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+
+% Version 6.a
+% -----------
+
+\makeatletter
+
+\let\pstreeORIG\pstree
+
+\def\pstree{\@ifnextchar[{\pstreeMOD@i}{\pstreeMOD@i[]}}
+\def\pstreeMOD@i[#1]{\pstreeMOD@ii[#1]}
+\def\pstreeMOD@ii[#1]#2#3{\pstreeMOD@iii[#1]#2\@nil#3\@nil}
+\def\pstreeMOD@iii[#1]#2\@nil#3\@nil{%
+  \pstreeORIG[#1]{%
+     \def\MyNode##1{%
+        \Tr[ref=t]{\Rnode{Pred\romannumeral\pstreelevel}{%
+	   \psframebox[fillcolor=yellow!50,fillstyle=solid]{##1}}}}#2}{%
+     \def\MyNode##1{\Tr[ref=t]{\psframebox[fillcolor=magenta!50,fillstyle=solid]{##1}}}%
+  \pst@cnta=\pstreelevel
+  \advance\pst@cnta\m@ne
+  \def\pspred{Pred\romannumeral\pst@cnta}#3}}
+
+\makeatother
+
+\vspace{1cm}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 6.b
+% -----------
+
+\vspace{1cm}
+\begingroup
+\psset{vref=0}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+
+% Version 6.c
+% -----------
+
+\vspace{1cm}
+\begingroup
+\psset{vref=-0.1}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+
+
+\clearpage
+\small
+\begin{verbatim}
+% Version 1
+% ---------
+
+\newcommand{\MyNode}[1]{\Tr{\psframebox[fillcolor=blue!50,fillstyle=solid]{#1}}}
+
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 2
+% ---------
+
+\renewcommand{\MyNode}[1]{\Tr[ref=t]{\psframebox[fillcolor=red!50,fillstyle=solid]{#1}}}
+
+\vspace{1cm}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 3
+% ---------
+
+\begingroup
+\renewcommand{\MyNode}[1]{\Tr[ref=t]{\psframebox[fillcolor=green!50,fillstyle=solid]{#1}}}
+\renewcommand{\psedge}[2]{\ncangles[angleA=-90,angleB=90]{#1}{#2}}
+
+\vspace{1cm}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+
+% Version 4
+% ---------
+
+\renewcommand{\MyNode}[2][]{\Tr[ref=t]{#1{\psframebox[fillcolor=green!50,fillstyle=solid]{#2}}}}
+
+\vspace{1cm}
+\pstree{\MyNode[{\rnode[b]{PredA}}]{A}}
+       {\renewcommand{\pspred}{PredA}%
+        \MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode[{\rnode[b]{PredB}}]{\shortstack{BBB\\BB\\B}}}
+               {\renewcommand{\pspred}{PredB}%
+                \MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 5
+% ---------
+
+\makeatletter
+
+\newcommand{\MyRootNode}[1]{%
+\Tr[ref=t]{\Rnode{Pred\romannumeral\pstreelevel}{\psframebox[fillcolor=magenta!50,fillstyle=solid]{#1}}}}
+\newcommand{\UpdateRootNode}{%
+\pst@cnta=\pstreelevel
+\advance\pst@cnta\m@ne
+\def\pspred{Pred\romannumeral\pst@cnta}}
+
+\makeatother
+
+\vspace{1cm}
+\begingroup
+\psset{vref=0}
+\pstree{\MyRootNode{A}}
+       {\UpdateRootNode%
+        \MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyRootNode{\shortstack{BBB\\BB\\B}}}
+               {\UpdateRootNode%
+                \MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+
+% Version 6.a
+% -----------
+
+\makeatletter
+
+\let\pstreeORIG\pstree
+
+\def\pstree{\@ifnextchar[{\pstreeMOD@i}{\pstreeMOD@i[]}}
+\def\pstreeMOD@i[#1]{\pstreeMOD@ii[#1]}
+\def\pstreeMOD@ii[#1]#2#3{\pstreeMOD@iii[#1]#2\@nil#3\@nil}
+\def\pstreeMOD@iii[#1]#2\@nil#3\@nil{%
+  \pstreeORIG[#1]{%
+     \def\MyNode##1{%
+        \Tr[ref=t]{\Rnode{Pred\romannumeral\pstreelevel}{%
+	   \psframebox[fillcolor=yellow!50,fillstyle=solid]{##1}}}}#2}{%
+     \def\MyNode##1{\Tr[ref=t]{\psframebox[fillcolor=magenta!50,fillstyle=solid]{##1}}}%
+  \pst@cnta=\pstreelevel
+  \advance\pst@cnta\m@ne
+  \def\pspred{Pred\romannumeral\pst@cnta}#3}}
+
+\makeatother
+
+\vspace{1cm}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+
+% Version 6.b
+% -----------
+
+\vspace{1cm}
+\begingroup
+\psset{vref=0}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+
+% Version 6.c
+% -----------
+
+\vspace{1cm}
+\begingroup
+\psset{vref=-0.1}
+\pstree{\MyNode{A}}
+       {\MyNode{B}
+        \MyNode{\shortstack{BB\\B}}
+        \pstree{\MyNode{\shortstack{BBB\\BB\\B}}}
+               {\MyNode{C}
+                \MyNode{CC}
+                \MyNode{CCC}}}
+\endgroup
+\end{verbatim}
+
+\end{document}

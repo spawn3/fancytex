@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{pst-node}
+\usepackage{comment}
+\setlength{\textwidth}{14cm}
+\setlength{\parindent}{-2cm}
+\newcommand{\Labels}{%
+	\naput[nrot=:U]{above}
+	\ncput[nrot=:U]{on}
+	\nbput[nrot=:U]{below}%
+}
+\newcommand{\Test}{%
+	\begin{pspicture}(-3,-3)(3,3)
+		\psgrid[gridlabels=6pt]
+		\pcline(0,0)(2.5,2.5)\Labels
+		\pcline(0,0)(-2.5,2.5)\Labels
+		\pcline{->}(0,0)(-2.5,-2.5)\Labels
+	\end{pspicture}
+	\hfill
+	\begin{pspicture}(7,7)
+		\psgrid[gridlabels=6pt]
+		\cnodeput(4,6){A}{A}
+		\cnodeput(1,2){B}{B}
+		\cnodeput(6,1){C}{C}
+		\ncarc[arcangle=30]{A}{C}
+		\ncput{\pnode{D}}
+		\ncarc[arcangle=-30]{B}{C}
+		\ncput{\pnode{E}}
+		\nccurve[angleA=180]{D}{E}
+		\ncput{\rnode{F}{F}}
+		\Labels
+	\end{pspicture}%
+}
+\pagestyle{empty}
+\begin{document}
+\psset{arrowscale=3,subgriddiv=0,griddots=5}
+\Test
+\makeatletter
+\def\psset@@nrot:#1\@nil{%
+	\psset@@rot#1\@nil
+	\edef\psk@rot{%
+		NAngle \ifx\psk@rot\@empty\else\psk@rot add \fi
+% D.G. modification begin - Oct. 13, 2000
+		tx@NodeDict begin xB xA lt {180 add} if end
+% D.G. modification end
+	}%
+}
+\def\naput@i{%
+	\pst@killglue
+	\pst@makebox{%
+		\naput@ii{%
+% D.G. modification begin - Oct. 13, 2000
+%NAngle 90 add
+			tx@NodeDict begin 
+				xB xA lt {NAngle 90 sub} {NAngle 90 add} ifelse 
+			end
+		}%
+	}%
+}
+% D.G. modification end
+%
+\def\nbput@i{%
+	\pst@killglue
+	\pst@makebox{%
+		\naput@ii{%
+% D.G. modification begin - Oct. 13, 2000
+%NAngle 90 sub
+			tx@NodeDict begin 
+				xB xA lt {NAngle 90 add} {NAngle 90 sub} ifelse 
+			end
+% D.G. modification end
+		}%
+	}%
+}
+\makeatother
+\vspace{1cm}
+\Test
+\end{document}

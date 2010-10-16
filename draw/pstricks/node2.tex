@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{fancyvrb}
+\usepackage{pst-node}
+\usepackage{calc} % Must be >= 1998/07/07 v4.1b which add \widthof, etc. macros
+\newlength{\Margin}
+\newlength{\TextLength}
+\newlength{\MyLength}
+\setlength{\parindent}{0cm}
+\pagestyle{empty}
+
+\begin{document}
+\setlength{\TextLength}{\widthof{\texttt{Longest verbatim line.}}}
+\setlength{\Margin}{(\textwidth - \TextLength - \fboxsep - \fboxsep) / \real{2}}
+\fvset{numbers=left,numbersep=3pt,frame=single,commandchars=\\\{\}}
+\psset{arrows=->,arrowscale=2,border=2pt,nodesep=1pt}
+%
+% Solution with a box: BVerbatim environment or SaveVerbatim one + \BUseVerbatim
+%
+\begin{SaveVerbatim}{VerbEnv}
+\pnode{NodeXB}First line.
+Second line.
+\rnode{NodeYB}{Longest verbatim} line.
+Fourth line.
+\end{SaveVerbatim}
+
+\begin{minipage}{2cm}
+  Comments\\
+  on line 1.%
+  \pnode(0,0.5\baselineskip){NodeXA}
+\end{minipage}
+\hfill
+%
+\fbox{%
+\begin{minipage}{\TextLength}
+  \BUseVerbatim{VerbEnv}
+\end{minipage}}
+\hfill
+%
+\begin{minipage}{2cm}
+  Comments\\
+  \pnode(0,0.5\baselineskip){NodeYA}%
+  on line 3.
+\end{minipage}
+
+% Connections
+\ncline{NodeXA}{NodeXB}
+\ncarc[arcangle=20]{NodeYA}{NodeYB}
+
+% Solution with Verbatim environment
+
+\begin{Verbatim}[xleftmargin=\Margin,xrightmargin=\Margin]
+\pnode{NodeXB}First line.
+Second line.
+\rnode{NodeYB}{Longest verbatim} line.
+Fourth line.
+\end{Verbatim}
+
+\rput(1,4\baselineskip){%
+\begin{minipage}{2cm}
+  Comments\\
+  on line 1.%
+  \pnode(0,0.5\baselineskip){NodeXA}
+\end{minipage}}
+%
+\setlength{\MyLength}{\textwidth - 1cm}
+\rput(\MyLength,4\baselineskip){%
+\begin{minipage}{2cm}
+  Comments\\
+  \pnode(0,0.5\baselineskip){NodeYA}%
+  on line 3.
+\end{minipage}}
+
+% Connections
+\ncline{NodeXA}{NodeXB}
+\ncarc[arcangle=20]{NodeYA}{NodeYB}
+
+\end{document}

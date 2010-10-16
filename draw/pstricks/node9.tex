@@ -1,0 +1,42 @@
+\listfiles
+\documentclass[a4paper]{article}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{multido}
+\begin{document}
+
+\begin{pspicture}(4,7)
+  \psset{arrowscale=1.5}
+  \multido{\iA=1+1}{6}{\cnode(1,\iA){0.25}{C\iA}}
+  \multido{\iA=1+2}{4}{\fnode[framesize=0.5](4,\iA){F\iA}}
+  \ncline[linecolor=red]{->}{C1}{F1}
+  \ncline[linecolor=red]{->}{C1}{F2}
+  \psset{arm=0,linecolor=red,angleA=180}
+  \multido{\iA=1+2}{4}{%
+    \ncline{<-}{F\iA}{C2}%
+    \ncdiag[linecolor=blue]{<-}{F\iA}{C4}%
+  }
+\end{pspicture}
+
+\small
+\begin{verbatim}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{multido}
+\begin{document}
+
+\begin{pspicture}(4,7)
+  \psset{arrowscale=1.5}
+  \multido{\iA=1+1}{6}{\cnode(1,\iA){0.25}{C\iA}}
+  \multido{\iA=1+2}{4}{\fnode[framesize=0.5](4,\iA){F\iA}}
+  \ncline[linecolor=red]{->}{C1}{F1}
+  \ncline[linecolor=red]{->}{C1}{F2}
+  \psset{arm=0,linecolor=red,angleA=180}
+  \multido{\iA=1+2}{4}{%
+    \ncline{<-}{F\iA}{C2}%
+    \ncdiag[linecolor=blue]{<-}{F\iA}{C4}%
+  }
+\end{pspicture}
+\end{verbatim}
+
+\end{document}

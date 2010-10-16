@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{pst-node}
+\newcommand{\SB}[1]{\psshadowbox[linecolor=yellow]{#1}}
+\makeatletter
+\newcommand{\mnode@MyNode}{%
+	\psshadowbox[linecolor=red]{%
+		\rnode@iii\Rnode@ii{\psm@thenode}%
+	}%
+}
+\makeatletter
+\newcommand{\mnode@MyNodeTwo}{%
+	\psdblframebox[linecolor=green]{%
+		\rnode@iii\Rnode@ii{\psm@thenode}%
+	}%
+}
+\makeatother
+\parindent=0pt
+
+\begin{document}
+With default \LaTeX macros\\
+\begin{psmatrix}
+  [name=A]\SB{A} & B & [name=C]\SB{C} 
+\end{psmatrix}
+\ncarc[offset=0.2,arcangle=210]{A}{C}
+\vspace{1cm}
+
+With \verb|pstricks| macros for the whole matrix\\
+
+\begin{psmatrix}[mnode=MyNode]
+  [name=A]A & [name=B]B & [name=C]C
+\end{psmatrix}
+\ncarc[offset=0.2,arcangle=210]{A}{C}
+\vspace{1cm}
+
+With \verb|pstricks| macros for single cells\\
+
+\begin{psmatrix}
+  A & [mnode=MyNodeTwo,name=BTwo] B & C
+\end{psmatrix}
+\ncarc[offset=0.2,arcangle=90]{B}{BTwo}
+
+\bigskip
+\begin{verbatim}
+\usepackage{pst-node}
+\newcommand{\SB}[1]{\psshadowbox[linecolor=yellow]{#1}}
+\makeatletter
+\newcommand{\mnode@MyNode}{%
+	\psshadowbox[linecolor=red]{%
+		\rnode@iii\Rnode@ii{\psm@thenode}%
+	}%
+}
+\makeatletter
+\newcommand{\mnode@MyNodeTwo}{%
+	\psdblframebox[linecolor=green]{%
+		\rnode@iii\Rnode@ii{\psm@thenode}%
+	}%
+}
+\makeatother
+\parindent=0pt
+
+\begin{document}
+With default \LaTeX macros\\
+\begin{psmatrix}
+  [name=A]\SB{A} & B & [name=C]\SB{C} 
+\end{psmatrix}
+\ncarc[offset=0.2,arcangle=210]{A}{C}
+\vspace{1cm}
+
+With \verb|pstricks| macros for the whole matrix\\
+
+\begin{psmatrix}[mnode=MyNode]
+  [name=A]A & [name=B]B & [name=C]C
+\end{psmatrix}
+\ncarc[offset=0.2,arcangle=210]{A}{C}
+\vspace{1cm}
+
+With \verb|pstricks| macros for single cells\\
+
+\begin{psmatrix}
+  A & [mnode=MyNodeTwo,name=BTwo] B & C
+\end{psmatrix}
+\ncarc[offset=0.2,arcangle=90]{B}{BTwo}
+\end{verbatim}
+
+\end{document}

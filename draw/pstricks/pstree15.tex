@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+
+\usepackage{pst-node,pst-tree,graphicx}
+\newcommand{\Itemf}[2][]{\Tr[#1]{%
+  \psframebox[linestyle=solid]{#2}}}
+%\renewcommand{\psedge}{\ncline}
+
+\begin{document}
+
+\let\pfb\psframebox
+\Large
+\begin{tabular}{@{}cc@{}}
+\verb+pst-node+ &  \verb+pst-tree+ \\[10pt]
+
+\raisebox{-0.9\height}{%
+\begin{psmatrix}[colsep=0.5cm,fillcolor=blue!50,fillstyle=solid]
+      & \pfb{A} \\
+\pfb{B$_1$} &       &\pfb{B$_2$} &       & \pfb{B$_3$} \\
+      & \pfb{C$_1$} &      & \pfb{C$_2$}
+\end{psmatrix}
+\ncline{1,2}{2,1}\ncline{1,2}{2,3}\ncline{1,2}{2,5}
+\ncline{2,1}{3,2}\ncline{2,1}{3,4}
+\ncline{2,3}{3,2}\ncline{2,5}{3,4}
+}
+&
+
+\psset{levelsep=2cm,treesep=1.5cm,fillcolor=red!50,fillstyle=solid} 
+\pstree{\Itemf{A}}{% 
+  \Tn
+  \Itemf[name=B1]{B$_1$}
+  \pstree{\Itemf[name=B2]{B$_2$}}{% 
+    \Itemf[name=C1]{C$_1$}\Itemf[name=C2,edge=none]{C$_2$}}
+  \Itemf[name=B3]{B$_3$}}
+\ncline{B1}{C1}\ncline{B1}{C2}\ncline{B2}{C1}\ncline{B3}{C2}
+
+\end{tabular}
+
+\clearpage
+\small
+\begin{verbatim}
+\usepackage{pst-node,pst-tree,graphicx}
+\newcommand{\Itemf}[2][]{\Tr[#1]{%
+  \psframebox[linestyle=solid]{#2}}}
+%\renewcommand{\psedge}{\ncline}
+
+\begin{document}
+
+\let\pfb\psframebox
+\Large
+\begin{tabular}{@{}cc@{}}
+\verb+pst-node+ &  \verb+pst-tree+ \\[10pt]
+
+\raisebox{-0.9\height}{%
+\begin{psmatrix}[colsep=0.5cm,fillcolor=blue!50,fillstyle=solid]
+      & \pfb{A} \\
+\pfb{B$_1$} &       &\pfb{B$_2$} &       & \pfb{B$_3$} \\
+      & \pfb{C$_1$} &      & \pfb{C$_2$}
+\end{psmatrix}
+\ncline{1,2}{2,1}\ncline{1,2}{2,3}\ncline{1,2}{2,5}
+\ncline{2,1}{3,2}\ncline{2,1}{3,4}
+\ncline{2,3}{3,2}\ncline{2,5}{3,4}
+}
+&
+
+\psset{levelsep=2cm,treesep=1.5cm,fillcolor=red!50,fillstyle=solid} 
+\pstree{\Itemf{A}}{% 
+  \Tn
+  \Itemf[name=B1]{B$_1$}
+  \pstree{\Itemf[name=B2]{B$_2$}}{% 
+    \Itemf[name=C1]{C$_1$}\Itemf[name=C2,edge=none]{C$_2$}}
+  \Itemf[name=B3]{B$_3$}}
+\ncline{B1}{C1}\ncline{B1}{C2}\ncline{B2}{C1}\ncline{B3}{C2}
+
+\end{tabular}
+\end{verbatim}
+
+
+\end{document}

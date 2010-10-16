@@ -1,0 +1,17 @@
+\documentclass{article} % hvoss_at_tug.org (2004-06-03)
+\usepackage{pst-tree}
+\begin{document}
+
+\pstree{\Tcircle{P}}{%
+  \Tdot~[tnpos=l]{\shortstack{Do\\Nothing}}
+  \Tdot~[tnpos=r]{\kern1em\shortstack{Sue\\No Offer\\Pursue Suit}}
+  \Tdot~[tnpos=r]{\shortstack{Sue\\No Offer\\Drop Suit}}
+  \pstree{\Tcircle{D}_{\shortstack{Sue\\Offer\\Settlement}}}{%
+    \pstree{\Tcircle{P}^{Reject}}{%
+      \Tdot^{Pursue}
+      \Tdot_{Drop Suit}}
+    \Tdot_{Accept}
+  }
+}
+
+\end{document}

@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage{pstricks,pst-node}
+
+\definecolor{bg}{rgb}{1,.5,.2}
+\definecolor{bgs}{rgb}{.5,1,.5}
+
+\SpecialCoor
+% \pctline(x1,y1)(v1)(x2,y2)(v2){pct}
+\makeatletter
+\def\pctline(#1)(#2)(#3)(#4)#5{%
+  \pst@getcoor{#1}\pst@tempa
+  \pst@getcoor{#3}\pst@tempb
+  \def\@factor{#5}
+  \addto@pscode{%
+    \pst@tempa /YA exch \pst@number\psyunit div def
+    /XA exch \pst@number\psxunit div def
+    \pst@tempb /YB exch \pst@number\psyunit div def
+    /XB exch \pst@number\psxunit div def
+    /dx XB XA sub def
+    /dy YB YA sub def
+    /len dx dx mul dy dy mul add sqrt def
+    /x1 .2 dx len div mul def
+    /y1 .2 dy len div mul def
+    /x2 \@factor\space dx mul def
+    /y2 \@factor\space dy mul def%
+  }
+  \ncline[linecolor=black,linewidth=.5mm]{#2}{#4}%
+  \psline[linecolor=red,linewidth=.5mm](!%
+      XA x1 add YA y1 add)(! XA x2 add YA y2 add)%
+}
+\makeatother
+
+\begin{document}
+
+\begin{pspicture}(0,0)(10,5)
+\psset{unit=.7}
+\cnode[fillstyle=solid,fillcolor=bgs](6,5){.2}{c2}
+\cnode[fillstyle=solid,fillcolor=bg](9,4){.3}{f2}
+\pctline(6,5)(c2)(9,4)(f2){.3}
+\end{pspicture}
+
+\vspace{2cm}\small
+\begin{verbatim}
+\definecolor{bg}{rgb}{1,.5,.2}
+\definecolor{bgs}{rgb}{.5,1,.5}
+
+\SpecialCoor
+% \pctline(x1,y1)(v1)(x2,y2)(v2){pct}
+\makeatletter
+\def\pctline(#1)(#2)(#3)(#4)#5{%
+  \pst@getcoor{#1}\pst@tempa
+  \pst@getcoor{#3}\pst@tempb
+  \def\@factor{#5}
+  \addto@pscode{%
+    \pst@tempa /YA exch \pst@number\psyunit div def
+    /XA exch \pst@number\psxunit div def
+    \pst@tempb /YB exch \pst@number\psyunit div def
+    /XB exch \pst@number\psxunit div def
+    /dx XB XA sub def
+    /dy YB YA sub def
+    /len dx dx mul dy dy mul add sqrt def
+    /x1 .2 dx len div mul def
+    /y1 .2 dy len div mul def
+    /x2 \@factor\space dx mul def
+    /y2 \@factor\space dy mul def%
+  }
+  \ncline[linecolor=black,linewidth=.5mm]{#2}{#4}%
+  \psline[linecolor=red,linewidth=.5mm](!%
+      XA x1 add YA y1 add)(! XA x2 add YA y2 add)%
+}
+\makeatother
+
+\begin{document}
+
+\begin{pspicture}(0,0)(10,5)
+\psset{unit=.7}
+\cnode[fillstyle=solid,fillcolor=bgs](6,5){.2}{c2}
+\cnode[fillstyle=solid,fillcolor=bg](9,4){.3}{f2}
+\pctline(6,5)(c2)(9,4)(f2){.3}
+\end{pspicture}
+\end{verbatim}
+
+\end{document}
+

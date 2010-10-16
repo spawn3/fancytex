@@ -1,0 +1,61 @@
+\documentclass[12pt,a4paper,german]{article}
+\usepackage{pst-node}           % PSTricks package for nodes
+\usepackage{pst-tree}           % PSTricks package for nodes
+
+\newcommand{\Itemf}[1]{\Tr[ref=l]{% 
+    \psframebox[linestyle=solid,fillcolor=cyan!50,fillstyle=solid]{#1}}}
+
+\begin{document}
+
+\renewcommand{\psedge}{\ncangle} 
+\psset{xbbd=1.5cm,treemode=R,angleB=180,angleA=-00,levelsep=72pt} 
+\pstree{\Itemf{Grandma}} {% 
+    \Itemf{Uncle}% 
+    \Itemf{Uncle}% 
+    \Itemf{Aunt}% 
+    \pstree{\Itemf{Father}}{\Itemf{Me}\Itemf{You}}%
+}
+
+\bigskip
+\begin{pspicture}(0,-4)(8,4)
+    \psset{arrows=->, nodesep=6pt}
+    \rput(0,0){\rnode{A}{Root}}
+    \rput[l](3,1){\rnode[l]{B}{Short}}
+    \rput[l](3,-1){\rnode[l]{C}{LongLongLongLongLongLong}}
+    \ncline{A}{B}
+    \ncline{A}{C}
+\end{pspicture}
+
+\clearpage
+\small
+\begin{verbatim}
+\usepackage{pst-node}           % PSTricks package for nodes
+\usepackage{pst-tree}           % PSTricks package for nodes
+
+\newcommand{\Itemf}[1]{\Tr[ref=l]{% 
+    \psframebox[linestyle=solid]{#1}}}
+
+\begin{document}
+
+\renewcommand{\psedge}{\ncangle} 
+\psset{xbbd=1.5cm,treemode=R,angleB=180,angleA=-00,levelsep=72pt} 
+\pstree{\Itemf{Grandma}} {% 
+    \Itemf{Uncle}% 
+    \Itemf{Uncle}% 
+    \Itemf{Aunt}% 
+    \pstree{\Itemf{Father}}{\Itemf{Me}\Itemf{You}}%
+}
+
+
+\begin{pspicture}(0,-4)(8,4)
+    \psset{arrows=->, nodesep=6pt}
+    \rput(0,0){\rnode{A}{Root}}
+    \rput[l](3,1){\rnode[l]{B}{Short}}
+    \rput[l](3,-1){\rnode[l]{C}{LongLongLongLongLongLong}}
+    \ncline{A}{B}
+    \ncline{A}{C}
+\end{pspicture}
+
+\end{verbatim}
+
+\end{document}

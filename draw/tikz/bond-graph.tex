@@ -1,0 +1,57 @@
+% Demonstration of tzbondgraph.sty, a macro package for drawing bond graphs.
+% Author: B. Umesh Rai
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{tzbondgraph}
+\usepackage{verbatim}
+
+\begin{comment}
+:Title: Bond graph
+:Tags: Macro packages, Diagrams
+
+Demonstration of `tzbondgraph.sty`_, a macro package for drawing `bond graphs`_.
+
+To compile the example you will need the following style file:
+
+- `tzbondgraph.sty`_
+
+The macros are documented in the file `bgElements.pdf`_ (`tex source`_)
+
+.. _tzbondgraph.sty: tzbondgraph/tzbondgraph.sty
+.. _bgElements.pdf: tzbondgraph/bgElements.pdf
+.. _tex source: tzbondgraph/bgElements.tex
+.. _bond graphs: http://www.bondgraph.info/about.html
+
+:Author: B\. Umesh Rai
+
+\end{comment}
+
+\begin{document}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \bgInput{S};
+        \bgJn{S}{a}[1];
+        \bgEx[0]{a}{b}{V_t}{e_t}{i_a}[left][1];
+        \bgRfxr[-35]{awest}{c}{R}{R_a}{e_{ra}}{i_{a}}[above][2];
+        \bgRex[90]{aeast}{d}{L}{L_a}{e_{la}}{i_a}[above][2];
+        \bgMGfx[0]{a}{e}{e_1}{i_a}{T_e}{\omega}[1];
+        \bgJn[1]{e}{f}[1];
+        \bgEx[-45]{e}{g}{T_l}{T_l}{\omega}[above][2];
+        \bgRfx[45]{feast}{c}{R}{B}{}{\omega}[above][2];
+        \bgRex[90]{f}{d}{L}{J}{}{\omega}[above][2.5];
+        \node (up) [point,above of=etop,xshift=-0.4cm,yshift=2.5cm]  {};
+        \bgJn{up}{g}[1];
+        \bgEx[0]{g}{h}{V_f}{e_f}{i_f}[left][1];
+        \bgRfx[0]{h}{i}{R}{R_f}{e_{rf}}{i_f}[right][1];
+        \bgRex[30]{h}{j}{L}{L_f}{e_{lf}}{i_f}[above][1];
+        \node (sig) [point,above of=etop,yshift=2cm]  {};
+        \draw (sig) -- node[rotate=90,left,yshift=0.2cm,near start] 
+            {$K_\phi = K_f \times i_f $} (etop);
+    \end{tikzpicture}\\
+    \caption{Bond graph model of a DC motor}
+\end{figure}
+
+\end{document}
+

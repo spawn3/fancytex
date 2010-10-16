@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}% voss 2006-08-29
+\usepackage{pstricks,pst-node}
+%
+\makeatletter
+\def\psWordBallon{\pst@object{psWordBallon}}
+\def\psWordBallon@i(#1)(#2)#3#4{{%
+   \use@par
+   \pst@killglue
+   \pnode(#2){WB@end}
+   \rput(#1){\ovalnode{WB@center}{\parbox{#3}{#4}}}
+   \nccurve[doubleline=true,doublesep=5pt,arrows=->,%
+       fillstyle=none]{WB@center}{WB@end}
+   \ignorespaces
+}}
+\makeatother
+\parindent=0pt
+\begin{document}
+
+\psWordBallon[angleB=100,angleA=-30](0,0)(3,-3){3cm}{Let's see what we
+can see in this Word Ballon \ldots}
+\psWordBallon[angleB=140,angleA=-90,linecolor=red,%
+   fillstyle=solid,fillcolor=cyan](5,0)(4,-6){2cm}%
+   {\raggedright Let's see what we can see in this Word Ballon \ldots}
+
+\vspace{6cm}
+Syntax: \verb+\psWordBallon[options](text center)(arrow end){text width}{text}+
+
+\clearpage
+\begin{verbatim}
+\documentclass[12pt]{article}% voss 2006-08-29
+\usepackage{pstricks,pst-node}
+%
+\makeatletter
+\def\psWordBallon{\pst@object{psWordBallon}}
+\def\psWordBallon@i(#1)(#2)#3#4{{%
+   \use@par
+   \pst@killglue
+   \pnode(#2){WB@end}
+   \rput(#1){\ovalnode{WB@center}{\parbox{#3}{#4}}}
+   \nccurve[doubleline=true,doublesep=5pt,arrows=->,%
+      fillstyle=none]{WB@center}{WB@end}
+   \ignorespaces
+}}
+\makeatother
+\parindent=0pt
+\begin{document}
+
+\psWordBallon[angleB=100,angleA=-30](0,0)(3,-3){3cm}{Let's see what we
+can see in this Word Ballon \ldots}
+\psWordBallon[angleB=140,angleA=-90,linecolor=red,%
+  fillstyle=solid,fillcolor=cyan](5,0)(4,-6){2cm}%
+  {\raggedright Let's see what we can see in this Word Ballon \ldots}
+
+\end{document}
+\end{verbatim}
+
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass[a4paper,10pt]{article} % John R. Zimmerman / Herbert Voss
+\usepackage{pstricks,pst-node}
+
+\def\tI{%
+\psframebox[boxsep=0pt,linecolor=red]{%
+  \begin{pspicture}(-1,7)(10,10)
+\rput(-3,8.5){\rnode{D}{%
+    \psframebox[fillcolor=yellow!40,fillstyle=solid]{\parbox{24mm}{Inputs:\\Input\\Input \\Input}}}}
+    \rput(0.5,8.5){\rnode{A}{\psframebox[fillcolor=red!40,fillstyle=solid]{\parbox{20mm}{Mod 1\\X, X}}}}
+    \rput(4.5,8.5){\rnode{B}{\psframebox[fillcolor=red!40,fillstyle=solid]{\parbox{28mm}{Mod 2:\\X, X, X}}}}
+    \rput(8.5,8.5){\rnode{C}{\psframebox[fillcolor=red!40,fillstyle=solid]{\parbox{15mm}{Mod 3:\\X,X}}}}
+    \psset{arrows=->,armA=0.5,angleB=90}
+    \ncline{->}{D}{A}
+    \ncline{->}{A}{B}
+    \ncline{->}{B}{C}
+    \ncangles{->}{C}{A}
+  \end{pspicture}}%
+}
+\def\tII{%
+\psframebox{%
+  \begin{pspicture}(-1,0)(10,3)
+    \rput(0.5,1.5){\rnode{G}{\psframebox[fillcolor=blue!40,fillstyle=solid]{\parbox{20mm}{Mod 1\\X, X}}}}
+    \rput(4.5,1.5){\rnode{H}{\psframebox[fillcolor=blue!40,fillstyle=solid]{\parbox{28mm}{Mod 2:\\X, X, X}}}}
+    \rput(8.5,1.5){\rnode{I}{\psframebox[fillcolor=blue!40,fillstyle=solid]{\parbox{15mm}{Mod 3:\\X,X}}}}
+    \psset{arrows=->,armA=0.5,angleB=90}
+    \ncline{->}{G}{H}
+    \ncline{->}{H}{I}
+    \ncline{->}{B}{C}
+    \ncangles{->}{I}{G}
+\end{pspicture}}%
+}
+
+\begin{document}
+
+\makebox[\textwidth]{%
+\psframebox[linestyle=dashed]{%
+\begin{pspicture}(-4,1.75)(11.25,10.25)
+  \psset{arrowscale=2}
+  \rput(5,8.5){\rnode{E}{\tI}}%
+  \rput(-2.5,3.5){\rnode{F}{\psframebox[fillcolor=yellow!40,fillstyle=solid]{\parbox{24mm}{Inputs:
+      \\Input\\Input\\Input}}}}%
+  \rput(5,3.5){\tII}%
+  \ncangles[armA=0.5,nodesepA=0,angleB=90,armB=1.5,linecolor=red]{->}{E}{F}
+\end{pspicture}}
+}
+
+\end{document} 

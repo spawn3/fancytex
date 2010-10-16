@@ -1,0 +1,52 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[usedvipsnames]{pstricks}
+\usepackage{pst-node}
+\SpecialCoor
+\begin{document}
+\begin{center}
+\begin{pspicture}(5,4)
+	\cnode[fillstyle=solid,fillcolor=lightgray](1,1){1cm}{A}
+	\cnode[fillstyle=solid,fillcolor=lightgray](4,1){1cm}{B}
+	\pscustom[linecolor=blue,linewidth=0.1pt]{%
+		\translate(1,1)
+		\psline(0;60)(3;60)
+	}
+	\pscustom[linecolor=blue,linewidth=0.1pt]{%
+		\translate(4,1)
+		\psline(0;100)(3;100)
+	}
+	\psset{linewidth=1.5pt}
+	\nccurve[angleA=60,angleB=100,linecolor=red]{A}{B}
+	\pccurve[angleA=60,angleB=100,linecolor=cyan](A)(B)
+	\psgrid[subgriddiv=0,griddots=10,gridlabels=7pt]
+\end{pspicture}
+\end{center}
+
+
+\small
+\begin{verbatim}
+\usepackage[usedvipsnames]{pstricks}
+\usepackage{pst-node}
+\SpecialCoor
+\begin{document}
+\begin{center}
+\begin{pspicture}(5,4)
+	\cnode[fillstyle=solid,fillcolor=lightgray](1,1){1cm}{A}
+	\cnode[fillstyle=solid,fillcolor=lightgray](4,1){1cm}{B}
+	\pscustom[linecolor=blue,linewidth=0.1pt]{%
+		\translate(1,1)
+		\psline(0;60)(3;60)
+	}
+	\pscustom[linecolor=blue,linewidth=0.1pt]{%
+		\translate(4,1)
+		\psline(0;100)(3;100)
+	}
+	\psset{linewidth=1.5pt}
+	\nccurve[angleA=60,angleB=100,linecolor=red]{A}{B}
+	\pccurve[angleA=60,angleB=100,linecolor=cyan](A)(B)
+	\psgrid[subgriddiv=0,griddots=10,gridlabels=7pt]
+\end{pspicture}
+\end{center}
+\end{verbatim}
+
+\end{document}

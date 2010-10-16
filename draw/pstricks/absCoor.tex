@@ -1,0 +1,82 @@
+\documentclass[a4paper]{article}% Franco Bagnoli
+\usepackage{pst-node}
+\usepackage{verbatim}
+\pagestyle{empty}
+\parindent=0pt
+\makeatletter
+\newenvironment{PrintCoords}[1]{%
+  \pstVerb{%
+    /outfile (#1) (w) file def
+    /ws {outfile exch writestring} bind def
+    /wl {ws (^^J) ws} bind def
+    /wt {=string cvs ws ( ) ws} bind def
+  }%
+}{\pstVerb{outfile closefile quit}}
+%
+\newcommand\Coords[1]{\pstVerb{%
+  tx@Dict begin
+    tx@NodeDict begin
+    initmatrix
+    (#1 ) ws
+    /N@#1 load  GetCenter  exch wt wt (^^J) ws
+    end
+  end
+}}
+\makeatother
+
+\begin{document}
+
+\cnodeput(0,0){A}{Anastacia}\qquad and \qquad
+\cnodeput(0,0){B}{Jennifer} 
+
+\vspace{1cm}
+\IfFileExists{coords.txt}{}{%
+  \begin{PrintCoords}{coords.txt}
+    \Coords{A}
+    \Coords{B}
+  \end{PrintCoords}%
+}
+
+
+\verbatiminput{coords.txt}
+
+\vspace{1cm}\small
+\begin{verbatim}
+\usepackage{pst-node}
+\usepackage{verbatim}
+\makeatletter
+\newenvironment{PrintCoords}[1]{%
+  \pstVerb{%
+    /outfile (#1) (w) file def
+    /ws {outfile exch writestring} bind def
+    /wl {ws (^^J) ws} bind def
+    /wt {=string cvs ws ( ) ws} bind def
+  }%
+}{\pstVerb{outfile closefile quit}}
+%
+\newcommand\Coords[1]{\pstVerb{%
+  tx@Dict begin
+    tx@NodeDict begin
+    initmatrix
+    (#1 ) ws
+    /N@#1 load  GetCenter  exch wt wt (^^J) ws
+    end
+  end
+}}
+\makeatother
+
+\begin{document}
+
+\cnodeput(0,0){A}{Anastacia}\qquad and \qquad
+\cnodeput(0,0){B}{Jennifer} 
+
+\begin{PrintCoords}{coords.txt}
+\Coords{A}
+\Coords{B}
+\end{PrintCoords}
+
+
+\verbatiminput{coords.txt}
+\end{verbatim}
+
+\end{document}

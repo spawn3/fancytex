@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+\usepackage[dvipsnames]{pstricks}
+\usepackage{pst-node}
+\makeatletter
+\iffalse
+%%% original code
+/NCAngles {
+  GetEdgeA GetEdgeB GetArmA GetArmB
+  /mtrx AngleA matrix rotate def
+  xA2 yA2 mtrx transform pop
+  xB2 yB2 mtrx transform exch pop
+  mtrx itransform
+  /y0 ED /x0 ED
+  mark ArmB 0 ne { xB1 yB1 } if
+  xB2 yB2 x0 y0 xA2 yA2
+  ArmA 0 ne { xA1 yA1 } if
+  tx@Dict begin false Line end
+  /LPutVar [ xB1 yB1 xB2 yB2 x0 y0 xA2 yA2 xA1 yA1 ] cvx def
+  /LPutPos { LPutLines } def
+  /HPutPos { HPutLines } def
+  /VPutPos { VPutLines } def } def
+%%% end
+\fi
+\pst@def{NCAngles}<
+   GetEdgeA 			% xA1 yA1
+   GetEdgeB 			% xB1 yB1
+   GetArmA 			% xA2 yA2
+   GetArmB			% xB2 yB2
+  /mtrx AngleA matrix rotate def        % original code
+%   /mtrx AngleA neg matrix rotate def
+   xA2 yA2  mtrx transform pop 
+   xB2 yB2 mtrx transform exch pop 
+   mtrx itransform pstack
+   /y0 ED /x0 ED 
+   0 0 moveto 0 1 0 setrgbcolor % the green line
+   xA1 yA1 mtrx transform 2 copy lineto stroke moveto 
+   xA2 yA2 mtrx transform lineto 
+   x0 y0 mtrx transform lineto
+   xB2 yB2 mtrx transform lineto
+   xB1 yB1 mtrx transform lineto 1 0 0 setrgbcolor stroke % the red line
+   mark ArmB 0 ne { xB1 yB1 } if
+   xB2 yB2 x0 y0 xA2 yA2 ArmA 0 ne { xA1 yA1 } if
+   tx@Dict begin false Line end 
+   /LPutVar [ xB1 yB1 xB2 yB2 x0 y0 xA2 yA2 xA1 yA1 ] cvx def 
+   /LPutPos { LPutLines } def
+   /HPutPos { HPutLines } def 
+   /VPutPos { VPutLines } def >
+\makeatother
+
+\begin{document}
+
+    \SpecialCoor
+%    \begin{pspicture}[showgrid=true](-4,-1.5)(8,3.5)
+   \begin{pspicture}[showgrid=true](-1,-1)(8,3.5)
+     \rput(0,0){\rnode{1}{A}} \rput(4,2){\rnode{2}{B}}
+     \ncangles[angleA=10,armA=2cm,angleB=20,armB=3cm]{1}{2}
+     \naput[npos=0.5,nrot=10,labelsep=2pt]{\scriptsize 2\,cm}
+     \nbput[npos=3.5,nrot=20,labelsep=2pt]{\scriptsize 3\,cm}
+     \naput[labelsep=0pt,npos=2,nrot=-100]{\psline(0.3,0)(0.3,0.3)(0,0.3)}
+     \psdots(0,0)(4,2)
+%     \psset{linestyle=dotted,dotsep=1pt}
+%     \psline[unit=1pt](0,0)(!26.7 26.7 10 sin mul 10 cos div)
+%     \psline[origin={-4,-2},unit=1pt](0,0)(!6 20 cos mul 20 sin div 6)
+     \psset{linestyle=solid}
+     \psline[linecolor=Gray](0,0)(4,0)
+     \psarc(0,0){1}{0}{10}
+     \uput[5](1;5){$\scriptscriptstyle{10^\circ}$}
+     \psarc(2cm;10){0.3}{60}{190}
+     \uput{0.3}[135](70pt,14.65pt){$\scriptstyle{90\;+\;(2\times10)\;=\;110^\circ}$}
+      \psline[linecolor=Gray](4,2)(7,2)
+      \psarc(4,2){1.2}{0}{20}
+     \uput{1.3}[10](4,2){$\scriptscriptstyle{20^\circ}$}
+   \end{pspicture}
+
+\end{document}

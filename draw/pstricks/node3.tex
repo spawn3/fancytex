@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{pst-node}
+\pagestyle{empty}
+
+\begin{document}
+\begin{psmatrix}[colsep=3]
+             & [colsep=-0.5,name=B] B \\[0pt]
+  [name=A] A &                        & [name=C] C
+  % Node connections
+  \ncline[arrowscale=2,nodesep=0.1]{->}{A}{C}
+  \ncput[npos=0.3333]{\pnode{X}}
+  \nccurve[ncurv=-1,nodesepA=-0.3]{B}{X}
+\end{psmatrix}
+
+\newlength{\MyLength}
+\settowidth{\MyLength}{$E_{01}$}
+\newcommand{\MyBox}[1]{\makebox[\MyLength]{#1}}
+\begin{psmatrix}[colsep=3,rowsep=1,mnode=circle]
+                             & [name=E01]\MyBox{$E_{01}$} \\[0pt]
+  [name=E00]\MyBox{$E_{00}$} & & [name=E11]\MyBox{$E_{11}$} \\
+                             & [name=E10]\MyBox{$E_{10}$}
+  % Node connections
+  \psset{nodesep=5pt,arrows=->}
+  \ncline{E00}{E01}^{$\lambda_A$}
+  \ncline{E00}{E10}^{$\lambda_B$}
+  \ncline{E01}{E11}^{$\lambda_B$}
+  \ncline{E10}{E11}^{$\lambda_A$}
+  \nccurve[ncurv=1,angle=-90]{E11}{E00}_{$\lambda_H$}
+\end{psmatrix}
+
+\small
+\begin{verbatim}
+\usepackage{pst-node}
+\pagestyle{empty}
+
+\begin{document}
+\begin{psmatrix}[colsep=3]
+             & [colsep=-0.5,name=B] B \\[0pt]
+  [name=A] A &                        & [name=C] C
+  % Node connections
+  \ncline[arrowscale=2,nodesep=0.1]{->}{A}{C}
+  \ncput[npos=0.3333]{\pnode{X}}
+  \nccurve[ncurv=-1,nodesepA=-0.3]{B}{X}
+\end{psmatrix}
+
+\newlength{\MyLength}
+\settowidth{\MyLength}{$E_{01}$}
+\newcommand{\MyBox}[1]{\makebox[\MyLength]{#1}}
+\begin{psmatrix}[colsep=3,rowsep=1,mnode=circle]
+                             & [name=E01]\MyBox{$E_{01}$} \\[0pt]
+  [name=E00]\MyBox{$E_{00}$} & & [name=E11]\MyBox{$E_{11}$} \\
+                             & [name=E10]\MyBox{$E_{10}$}
+  % Node connections
+  \psset{nodesep=5pt,arrows=->}
+  \ncline{E00}{E01}^{$\lambda_A$}
+  \ncline{E00}{E10}^{$\lambda_B$}
+  \ncline{E01}{E11}^{$\lambda_B$}
+  \ncline{E10}{E11}^{$\lambda_A$}
+  \nccurve[ncurv=1,angle=-90]{E11}{E00}_{$\lambda_H$}
+\end{psmatrix}
+\end{verbatim}
+
+
+\end{document}

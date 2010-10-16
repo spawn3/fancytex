@@ -1,0 +1,13 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{pst-node}
+\begin{document}
+
+\rput(0,0){\rnode[br]{node1}{\psframebox[fillstyle=solid,fillcolor=blue!40]{$G_1*G_2$}}}
+\rput(3,-2){\rnode[tl]{node2}{\psframebox[fillstyle=solid,fillcolor=red!40]{$H$}}}
+\ncline{node1}{node2}
+
+\rput(4,0){\rnode[tl]{node1}{\psframebox[fillstyle=solid,fillcolor=blue!40]{$G_1*G_2$}}}
+\rput(7,-2){\rnode[br]{node2}{\psframebox[fillstyle=solid,fillcolor=red!40]{$H$}}}
+\ncangles[angleA=90,angleB=0]{node1}{node2}
+
+\end{document}

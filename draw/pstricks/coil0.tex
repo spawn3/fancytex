@@ -1,0 +1,62 @@
+\documentclass[a4paper]{article}
+\usepackage{pst-node}
+\usepackage{pst-coil}
+\SpecialCoor
+\begin{document}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilaspect=0,coilheight=2.5,coilwidth=.5,%
+	coilarm=0.45cm,arrowscale=2,linecolor=red]{->}{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilaspect=0,coilheight=.5,coilwidth=.5,%
+	coilarm=0.5cm,arrowscale=2,linecolor=red]{->}{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilaspect=0,coilheight=5,coilwidth=.25,%
+	coilarm=0cm,arrowscale=2,linecolor=red]{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilheight=.5,coilwidth=.5,%
+	coilarm=0.5cm,arrowscale=2,linecolor=blue]{->}{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilheight=1.5,coilwidth=.5,%
+	coilarm=0.25cm,arrowscale=2,linecolor=blue]{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilheight=1.5,coilwidth=.25,%
+	coilarm=0.25cm,arrowscale=2,linecolor=blue]{A}{B}
+
+
+\begin{verbatim}
+\usepackage{pst-node}
+\usepackage{pst-coil}
+\SpecialCoor
+\begin{document}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilaspect=0,coilheight=2.5,coilwidth=.5,%
+	coilarm=0.45cm,arrowscale=2,linecolor=red]{->}{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilaspect=0,coilheight=.5,coilwidth=.5,%
+	coilarm=0.5cm,arrowscale=2,linecolor=red]{->}{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilaspect=0,coilheight=5,coilwidth=.25,%
+	coilarm=0cm,arrowscale=2,linecolor=red]{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilheight=.5,coilwidth=.5,%
+	coilarm=0.5cm,arrowscale=2,linecolor=blue]{->}{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilheight=1.5,coilwidth=.5,%
+	coilarm=0.25cm,arrowscale=2,linecolor=blue]{A}{B}
+
+\circlenode{A}{Blah}\hfill\circlenode{B}{Blub}
+\nccoil[coilheight=1.5,coilwidth=.25,%
+	coilarm=0.25cm,arrowscale=2,linecolor=blue]{A}{B}
+\end{verbatim}
+\end{document}

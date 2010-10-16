@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage{pst-node}
+\newcommand{\pw}[1]{\pscirclebox[linewidth=0.4pt,
+  fillcolor=cyan!40,fillstyle=solid]{#1}}
+\begin{document}
+
+\psset{linearc=0.15}
+\begin{center}
+\hspace{1.5cm} % Because left line connexions change centering...
+\begin{psmatrix}[mnode=r,colsep=0.8,rowsep=0.8]
+&[name=1] \pw{1}&[name=2] \pw{2}& & [name=3] \pw{3}&\\[0pt]
+[name=4] \pw{4}& &[name=5] \pw{5}&[name=6] \pw{6} &[name=7] \pw{7}\\[0pt]
+&[name=8] \pw{8}& & [name=9] \pw{9}&[name=10]\pw{10}\\[0pt]
+\ncline{-}{1}{2}^1 \ncline{-}{2}{3}^8 \ncline{-}{1}{4}^7 \ncline{-}{1}{5}<2
+\ncline{-}{2}{3}^3 \ncline{-}{6}{3}<2 \ncline{-}{7}{3}>3 \ncline{-}{5}{6}^1
+\ncline{-}{6}{7}^1 \ncline{-}{4}{8}_8 \ncline{-}{5}{8}^7 \ncline{-}{6}{9}>1
+\ncline{-}{5}{9}<2 \ncline{-}{7}{9}>4 \ncline{-}{10}{7}>2 \ncline{-}{9}{8}_5
+\ncline{-}{9}{10}_1
+\end{psmatrix}
+\end{center}
+
+\small
+\begin{verbatim}
+\usepackage{pst-node}
+\newcommand{\pw}[1]{\pscirclebox[linewidth=0.4pt,
+  fillcolor=cyan!40,fillstyle=solid]{#1}}
+\begin{document}
+
+\psset{linearc=0.15}
+\begin{center}
+\hspace{1.5cm} % Because left line connexions change centering...
+\begin{psmatrix}[mnode=r,colsep=0.8,rowsep=0.8]
+&[name=1] \pw{1}&[name=2] \pw{2}& & [name=3] \pw{3}&\\[0pt]
+[name=4] \pw{4}& &[name=5] \pw{5}&[name=6] \pw{6} &[name=7] \pw{7}\\[0pt]
+&[name=8] \pw{8}& & [name=9] \pw{9}&[name=10]\pw{10}\\[0pt]
+\ncline{-}{1}{2}^1 \ncline{-}{2}{3}^8 \ncline{-}{1}{4}^7 \ncline{-}{1}{5}<2
+\ncline{-}{2}{3}^3 \ncline{-}{6}{3}<2 \ncline{-}{7}{3}>3 \ncline{-}{5}{6}^1
+\ncline{-}{6}{7}^1 \ncline{-}{4}{8}_8 \ncline{-}{5}{8}^7 \ncline{-}{6}{9}>1
+\ncline{-}{5}{9}<2 \ncline{-}{7}{9}>4 \ncline{-}{10}{7}>2 \ncline{-}{9}{8}_5
+\ncline{-}{9}{10}_1
+\end{psmatrix}
+\end{center}
+\end{verbatim}
+
+\end{document}

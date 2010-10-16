@@ -1,0 +1,42 @@
+\documentclass{minimal}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\pagestyle{empty}
+\def\bBox#1#2{\makebox[#1]{#2}}
+\begin{document}
+
+\psframebox[fillcolor=black!10,fillstyle=solid]{%
+\begin{pspicture}(6,3)
+   \psset{fillstyle=solid,fillcolor=white}
+   \rput[tm](3,3){\ovalnode{T}{\textbf T}}
+   \rput[ml](0,1.5){\rnode{R}{\psframebox{\bBox{2.5cm}{{\textbf R}}}}}
+   \rput[mr](6,1.5){\rnode{A}{\psframebox{\bBox{2.5cm}{{\textbf A}}}}}
+   \rput[bl](0,0){\rnode{K}{\psframebox{\bBox{2.5cm}{{\textbf K}}}}}
+   \psset{fillstyle=none}
+   \ncangle[angleA=180,angleB=90,linewidth=2pt]{->}{T}{R}
+   \ncline[linewidth=2pt]{->}{A}{R}
+   \ncline[angle=0,linewidth=2pt]{->}{R}{K}
+   \ncangle[linewidth=2pt,angleB=-90]{->}{K}{A}
+\end{pspicture}}
+
+\begin{verbatim}
+\usepackage{pst-node}
+\def\bBox#1#2{\makebox[#1]{#2}}
+
+
+\psframebox[fillcolor=black!10,fillstyle=solid]{%
+\begin{pspicture}(6,3)
+   \psset{fillstyle=solid,fillcolor=white}
+   \rput[tm](3,3){\ovalnode{T}{\textbf T}}
+   \rput[ml](0,1.5){\rnode{R}{\psframebox{\bBox{2.5cm}{{\textbf R}}}}}
+   \rput[mr](6,1.5){\rnode{A}{\psframebox{\bBox{2.5cm}{{\textbf A}}}}}
+   \rput[bl](0,0){\rnode{K}{\psframebox{\bBox{2.5cm}{{\textbf K}}}}}
+   \psset{fillstyle=none}
+   \ncangle[angleA=180,angleB=90,linewidth=2pt]{->}{T}{R}
+   \ncline[linewidth=2pt]{->}{A}{R}
+   \ncline[angle=0,linewidth=2pt]{->}{R}{K}
+   \ncangle[linewidth=2pt,angleB=-90]{->}{K}{A}
+\end{pspicture}}
+\end{verbatim}
+
+\end{document}

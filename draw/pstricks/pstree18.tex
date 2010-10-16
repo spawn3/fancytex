@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage{pst-tree}
+\pagestyle{empty}
+\def\thickLine{\ncline[linewidth=3pt,linecolor=blue]}
+\begin{document}
+
+\pstree{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Tcircle{A}
+        \Tcircle[edge={\ncline[linewidth=3pt,linecolor=red]}]{B}
+        \Tcircle{C}}
+\qquad
+\pstree{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Tcircle{A}
+        \Tcircle[edge=\thickLine]{B}
+        \Tcircle{C}}
+
+\end{document}

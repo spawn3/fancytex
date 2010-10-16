@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+
+\usepackage{pst-node}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=red!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncangles[angleA=90,angleB=180,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=green!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=-90,loopsize=-2,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=blue!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=180,loopsize=2,armA=0.5,armB=0,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=cyan!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=-90,loopsize=2,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=yellow!60,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=-90,loopsize=-2,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\small
+\begin{verbatim}
+\usepackage{pst-node}
+
+\begin{document}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=red!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncangles[angleA=90,angleB=180,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=green!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=-90,loopsize=-2,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=blue!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=180,loopsize=2,armA=0.5,armB=0,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=cyan!40,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=-90,loopsize=2,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+
+\psframebox[framesep=0]{%
+\begin{pspicture}(-1,-1)(1,1)
+    \rnode{B}{\psframebox[fillcolor=yellow!60,fillstyle=solid]{On a actionn\'e $k_1$}}
+    \ncloop[angleA=90,angleB=-90,loopsize=-2,arm=0.5,linearc=.2]{->}{B}{B}
+\end{pspicture}}
+\end{verbatim}
+
+
+\end{document}

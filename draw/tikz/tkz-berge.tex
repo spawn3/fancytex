@@ -1,0 +1,94 @@
+% The tkz-berge graph package
+% Author: Alain Matthes (http://altermundus.fr/)
+
+\documentclass[]{article}
+\usepackage{tikz}
+\usepackage{tikz,fullpage}
+\usetikzlibrary{arrows,%
+                petri,%
+                topaths}%
+\usepackage{tkz-berge}
+\usepackage[position=top]{subfig}
+\usepackage{verbatim}
+
+\begin{comment}
+:Title: The tkz-berge graph package
+:Slug: tkz-berge
+:Tags: Graphs
+
+The ``tkz-berge`` package is a set of convenient macros for drawing typical textbook graphs.
+It is built on top of TikZ' node and edge constructs, but adds several shortcuts for placing, 
+arranging  and connecting vertices. Visit the package's home page to see  more_ examples_.
+
+Documentation_ only available in French. However, the code and the numerous examples speak for themselves.
+
+:Download: `tkz-berge.sty`_
+:Author: `Alain Matthes`_
+:Source: `Altermundus`_
+
+.. _Alain Matthes: http://altermundus.fr/index.html
+.. _Altermundus: http://www.altermundus.fr/pages/pdflatex/graph.html
+.. _more: http://www.altermundus.fr/pages/pdflatex/graph.html
+.. _examples: http://www.altermundus.fr/pages/math/graphtheory.html
+.. _Documentation: http://www.altermundus.fr/pages/downloads/doc-TKZberge.pdf
+.. _tkz-berge.sty: http://www.altermundus.fr/pages/downloads/tkz-berge.sty
+
+\end{comment}
+
+\begin{document}
+\begin{figure}
+\centering
+\subfloat[]{
+\begin{tikzpicture}[scale=0.75,transform shape]
+  \Vertex[x=0,y=0](K)
+  \Vertex[x=0,y=2](F)
+  \Vertex[x=-1,y=4](D)
+  \Vertex[x=3,y=7](H)
+  \Vertex[x=8,y=5](B)
+  \Vertex[x=9,y=2](N)
+  \Vertex[x=5,y=0](M)
+  \Vertex[x=3,y=1](S)
+  \tikzstyle{LabelStyle}=[fill=white,sloped]
+  \tikzstyle{EdgeStyle}=[bend left]
+  \Edge[label=$120$](K)(F)
+  \Edge[label=$650$](H)(S)
+  \Edge[label=$780$](H)(M)
+  \Edge[label=$490$](D)(B)
+  \Edge[label=$600$](D)(M)
+  \Edge[label=$580$](B)(M)
+  \Edge[label=$600$](H)(N)
+  \Edge[label=$490$](F)(H)
+  \tikzstyle{EdgeStyle}=[bend right]
+  \Edge[label=$630$](S)(B)
+  \Edge[label=$210$](S)(N)
+  \Edge[label=$230$](S)(M)
+\end{tikzpicture}
+}
+\subfloat[]{
+\begin{tikzpicture}[scale=0.75,transform shape]
+  \tikzstyle{every node}=[node distance = 4cm,%
+                          bend angle    = 45,%
+                          fill          = gray!30]
+  \Vertex(P)
+  \NOEA{P}(B)
+  \SOEA{P}(M)
+  \NOEA{B}(D)
+  \SOEA{B}(C)
+  \SOEA{C}(L)
+  \tikzstyle{EdgeStyle}=[pre and post]
+  \Edge[label=$4$](P)(M)
+  \Edge[label=$9$](C)(M)
+  \Edge[label=$4$](C)(L)
+  \Edge[label=$5$](C)(D)
+  \Edge[label=$10$](B)(M)
+  \tikzstyle{EdgeStyle}=[pre and post,bend right]
+  \Edge[label=$11$](L)(D)
+  \tikzstyle{EdgeStyle}=[post]
+  \Edge[label=$3$](C)(B)
+  \Edge[label=$10$](D)(B)
+  \Edge[label=$10$](L)(M)
+  \Edge[label=$10$](B)(P)
+\end{tikzpicture}
+}
+\end{figure}
+\end{document}

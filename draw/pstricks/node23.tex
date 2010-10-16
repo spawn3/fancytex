@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{pst-tree,pstricks-add}
+\SpecialCoor
+\begin{document}
+\pstree[radius=3pt,treesep=3cm]{\Tc*{3pt}~[tnpos=l]{A}}{
+        \pstree{\Tc*[name=top]{3pt}~[tnpos=l]{B}}{%
+            \TC*[name=left]~[tnpos=l]{C}
+            \TC*[name=right]~[tnpos=r]{D}
+        }
+    \TC*~[tnpos=r]{foo}
+    \TC*~[tnpos=r]{bar}
+}
+\pspolygon[fillstyle=solid,
+        fillcolor=blue!30,
+        linearc=14pt,
+        cornersize=absolute,
+        linewidth=1.5pt, opacity=0.3]%
+  (!\psGetNodeCenter{top} top.x top.y 1 add)%
+  (!\psGetNodeCenter{left} left.x 1.3 sub left.y .7 sub)%
+  (!\psGetNodeCenter{right} right.x 1.3 add right.y .7 sub)
+
+\bigskip
+\begin{verbatim}
+\pstree[radius=3pt,treesep=3cm]{\Tc*{3pt}~[tnpos=l]{A}}{
+        \pstree{\Tc*[name=top]{3pt}~[tnpos=l]{B}}{%
+            \TC*[name=left]~[tnpos=l]{C}
+            \TC*[name=right]~[tnpos=r]{D}
+        }
+    \TC*~[tnpos=r]{foo}
+    \TC*~[tnpos=r]{bar}
+}
+\pspolygon[fillstyle=solid,
+        fillcolor=blue!30,
+        linearc=14pt,
+        cornersize=absolute,
+        linewidth=1.5pt, opacity=0.3]%
+  (!\psGetNodeCenter{top} top.x top.y 1 add)%
+  (!\psGetNodeCenter{left} left.x 1.3 sub left.y .7 sub)%
+  (!\psGetNodeCenter{right} right.x 1.3 add right.y .7 sub)
+\end{verbatim}
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[dvipsnames]{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-slpe}
+\parindent=0pt
+
+\begin{document}
+
+\Large
+\psset{slopeend=RawSienna,slopebegin=white,slopecenter={-0.05 0.05},
+    sloperadius=8mm,linewidth=0.8pt,fillstyle=ccslope}
+\begin{pspicture}(8,8)
+  \cnodeput{0}(4,8){D}{D}
+  \cnodeput{0}(0,0){A}{A}
+  \cnodeput{0}(4,0){B}{B}
+  \cnodeput{0}(8,0){C}{C}
+  \psset{fillstyle=none,doubleline=true,doublecolor=Orange,doublesep=1.8pt}
+  \ncline{D}{B}\nbput{1}
+  \ncarc[arcangle=30]{A}{B} \naput{4}
+  \ncarc[arcangle=-30]{A}{B}\naput{5}
+  \ncarc[arcangle=30]{B}{C} \naput{6}
+  \ncarc[arcangle=-30]{B}{C}\naput{7}
+  \ncarc[arcangle=30]{A}{D} \naput{2}
+  \ncarc[arcangle=-30]{C}{D}\nbput{3}
+\end{pspicture}
+
+\vspace{1cm}
+\psset{fillstyle=ccslope}
+\psmatrix[rowsep=3cm,colsep=3cm,mnode=circle]
+ & [name=D]D \\[3.5cm]
+ [name=A]A & [name=B]B & [name=C]C
+\endpsmatrix
+\psset{fillstyle=none,doubleline=true,doublecolor=Orange,doublesep=1.8pt}
+\ncline{D}{B}\nbput{1}
+\ncarc[arcangle=30]{A}{B} \naput{4}
+\ncarc[arcangle=-30]{A}{B}\naput{5}
+\ncarc[arcangle=30]{B}{C} \naput{6}
+\ncarc[arcangle=-30]{B}{C}\naput{7}
+\ncarc[arcangle=30]{A}{D} \naput{2}
+\ncarc[arcangle=-30]{C}{D}\nbput{3}
+
+
+\clearpage
+\small
+\begin{verbatim}
+\usepackage[dvipsnames]{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-slpe}
+
+\begin{document}
+
+With a coordinate system:
+
+\Large
+\psset{slopeend=RawSienna,slopebegin=white,slopecenter={-0.05 0.05},
+    sloperadius=8mm,linewidth=0.8pt,fillstyle=ccslope}
+\begin{pspicture}(8,8)
+  \cnodeput{0}(4,8){D}{D}
+  \cnodeput{0}(0,0){A}{A}
+  \cnodeput{0}(4,0){B}{B}
+  \cnodeput{0}(8,0){C}{C}
+  \psset{fillstyle=none,doubleline=true,doublecolor=Orange,doublesep=1.8pt}
+  \ncline{D}{B}\nbput{1}
+  \ncarc[arcangle=30]{A}{B} \naput{4}
+  \ncarc[arcangle=-30]{A}{B}\naput{5}
+  \ncarc[arcangle=30]{B}{C} \naput{6}
+  \ncarc[arcangle=-30]{B}{C}\naput{7}
+  \ncarc[arcangle=30]{A}{D} \naput{2}
+  \ncarc[arcangle=-30]{C}{D}\nbput{3}
+\end{pspicture}
+
+\vspace{1cm}
+\normalsize with psmatrix:
+
+\Large
+\psset{fillstyle=ccslope}
+\psmatrix[rowsep=3cm,colsep=3cm,mnode=circle]
+ & [name=D]D \\[3.5cm]
+ [name=A]A & [name=B]B & [name=C]C
+\endpsmatrix
+\psset{fillstyle=none,doubleline=true,doublecolor=Orange,doublesep=1.8pt}
+\ncline{D}{B}\nbput{1}
+\ncarc[arcangle=30]{A}{B} \naput{4}
+\ncarc[arcangle=-30]{A}{B}\naput{5}
+\ncarc[arcangle=30]{B}{C} \naput{6}
+\ncarc[arcangle=-30]{B}{C}\naput{7}
+\ncarc[arcangle=30]{A}{D} \naput{2}
+\ncarc[arcangle=-30]{C}{D}\nbput{3}
+\end{verbatim}
+
+
+\end{document}
+

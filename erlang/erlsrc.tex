@@ -1,0 +1,81 @@
+\documentclass[a4paper, 11pt]{book}
+\usepackage{indentfirst}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color,xcolor}
+\usepackage{graphicx}
+\usepackage{manfnt}
+\usepackage{alltt}
+
+%%
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-blur}
+\usepackage{pst-uml}
+
+%%
+\usepackage{pgf}
+\usepackage{tikz}
+
+%underline
+%\usepackage{ulem}
+%\usepackage{soul}
+\usepackage[
+    dvipdfm,
+    pdfstartview=FitH,
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+    unicode=false,
+    CJKbookmarks=true]{hyperref}
+
+%\pagestyle{empty}
+\newpsstyle{Cblue}{fillstyle=solid,fillcolor=blue!30}
+\newpsstyle{Cred}{fillstyle=solid,fillcolor=red!30,shadow=true}
+
+\definecolor{Pink}{rgb}{1.,0.75,0.8}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% font
+\usepackage[cm-default]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+\newcommand{\yahei}{\fontspec[ExternalLocation=/usr/share/fonts/vista/]{msyh.ttf}}
+
+%\setmainfont[Mapping=tex-text,ItalicFont=SimSun,BoldFont=SimHei]{Adobe Fangsong Std}
+\setmainfont[Mapping=tex-text,ItalicFont=SimSun,BoldFont=SimHei]{Microsoft YaHei}
+%\setmainfont[Mapping=tex-text,ItalicFont=SimSun,BoldFont=SimHei]{YaHei Consolas Hybrid}
+%\setsansfont[BoldFont=SimHei]{KaiTi_GB2312}
+%\setmonofont{SimSun}
+%\setromanfont{Microsoft YaHei}
+
+\XeTeXlinebreaklocale ``zh''
+\XeTeXlinebreakskip = 0pt plus 1pt minus .1pt
+
+%\AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}}
+
+\definecolor{Blue}{rgb}{.3, .3, .9}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parindent}{2em}
+\renewcommand{\baselinestretch}{1.0}
+\renewcommand\contentsname{目录}
+
+\begin{document}
+
+\title{Erlang源码剖析}
+\author{Dong Guanjun}
+\maketitle
+\tableofcontents
+
+\include{intro}
+\include{lang}
+\include{dist}
+
+\appendix
+
+\include{references}
+
+\newpage
+\end{document}

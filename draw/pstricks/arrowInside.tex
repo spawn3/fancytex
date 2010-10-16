@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{pstricks-add}
+\pagestyle{empty}
+%
+\begin{document}
+\psset{arrowscale=4}
+\def\pscolhookiii{\global\pscolsep=0.5cm}
+\def\pscolhookiv{\global\pscolsep=2cm}
+\begin{psmatrix}[colsep=2,rowsep=2,mnode=circle]
+  [name=N11] N11 & [name=N12] N12 & [name=N13] N13 & [name=N14] N14 \\[0pt]
+  [name=N21] N21 & [name=N22] N22 & [name=N23] N23 & [name=N24] N24 \\[2cm]
+  [name=N31] N31 & [name=N32] N32 & [name=N33] N33 & [name=N34] N34
+\end{psmatrix}
+% Node connections
+\ncline[ArrowInside=->,ArrowInsideNo=5,%
+	linecolor=red]{N11}{N33}
+\ncline[ArrowInside=-|,ArrowInsidePos=0.75,%
+	linecolor=blue]{<->}{N23}{N34}
+\nccurve[angleB=90,ArrowInside={-]},ArrowInsidePos=0.6666,%
+	linecolor=cyan]{N13}{N14}
+\nccurve[angle=-90,ArrowInside=->,ArrowInsidePos=0.5,%
+	linecolor=green]{N31}{N33}
+\nccurve[angleA=90,angleB=180,ArrowInside=->,ArrowInsidePos=0.4,%
+	linecolor=gray]{N31}{N24}
+
+
+\begin{verbatim}
+\usepackage{pstricks-add}
+\pagestyle{empty}
+%
+\begin{document}
+\psset{arrowscale=4}
+\def\pscolhookiii{\global\pscolsep=0.5cm}
+\def\pscolhookiv{\global\pscolsep=2cm}
+\begin{psmatrix}[colsep=2,rowsep=2,mnode=circle]
+  [name=N11] N11 & [name=N12] N12 & [name=N13] N13 & [name=N14] N14 \\[0pt]
+  [name=N21] N21 & [name=N22] N22 & [name=N23] N23 & [name=N24] N24 \\[2cm]
+  [name=N31] N31 & [name=N32] N32 & [name=N33] N33 & [name=N34] N34
+\end{psmatrix}
+% Node connections
+\ncline[ArrowInside=->,ArrowInsideNo=5,%
+	linecolor=red]{N11}{N33}
+\ncline[ArrowInside=-|,ArrowInsidePos=0.75,%
+	linecolor=blue]{<->}{N23}{N34}
+\nccurve[angleB=90,ArrowInside={-]},ArrowInsidePos=0.6666,%
+	linecolor=cyan]{N13}{N14}
+\nccurve[angle=-90,ArrowInside=->,ArrowInsidePos=0.5,%
+	linecolor=green]{N31}{N33}
+\nccurve[angleA=90,angleB=180,ArrowInside=->,ArrowInsidePos=0.4,%
+	linecolor=gray]{N31}{N24}
+\end{verbatim}
+
+
+\end{document}

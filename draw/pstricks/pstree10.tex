@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage{pst-tree}
+
+% We force the boxes to be of the same size using \makebox
+\newcommand{\MyNode}[1]{\Tr{\psshadowbox[fillcolor=yellow!50]{\makebox[4cm]{\color{blue}#1}}}}
+
+\renewcommand{\psedge}[2]{\ncangle[angleA=-90,angleB=90,armB=0.8]{#1}{#2}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\psset{treesep=2.5}
+
+With pstree
+
+\begin{center}
+  \pstree[thislevelsep=1]
+         {\MyNode{Project Manager}}
+         {\pstree{\pstree[treemode=R,thislevelsep=3.5]{\Tn}
+                         {\renewcommand{\psedge}[2]{%
+                            \ncangle[angleA=-90,angleB=180]{#1}{#2}}
+                          \MyNode{Consulting engineer}}}
+                 {\MyNode{Subcontractor}\MyNode{Subcontractor}}}
+\end{center}
+
+
+With psmatrix
+
+\begin{center}
+  \begin{psmatrix}[mnode=r,colsep=-1]
+                           & \MyNode{Project Manager} \\[-1cm]
+                           &                 & \MyNode{Consulting engineer} \\
+    \MyNode{Subcontractor} &                 & \MyNode{Subcontractor}
+  \end{psmatrix}
+  \ncangle[angleA=-90,angleB=180]{1,2}{2,3}
+  \psset{angleA=-90,angleB=90,armB=0.8}
+  \ncangle{1,2}{3,1}
+  \ncangle{1,2}{3,3}
+\end{center}
+
+
+\clearpage
+\small
+\begin{verbatim}
+\usepackage{pst-tree}
+
+% We force the boxes to be of the same size using \makebox
+\newcommand{\MyNode}[1]{\Tr{\psshadowbox[fillcolor=yellow!50]{\makebox[4cm]{\color{blue}#1}}}}
+
+\renewcommand{\psedge}[2]{\ncangle[angleA=-90,angleB=90,armB=0.8]{#1}{#2}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\psset{treesep=2.5}
+
+\begin{center}
+  \pstree[thislevelsep=1]
+         {\MyNode{Project Manager}}
+         {\pstree{\pstree[treemode=R,thislevelsep=3.5]{\Tn}
+                         {\renewcommand{\psedge}[2]{%
+                            \ncangle[angleA=-90,angleB=180]{#1}{#2}}
+                          \MyNode{Consulting engineer}}}
+                 {\MyNode{Subcontractor}\MyNode{Subcontractor}}}
+\end{center}
+
+\begin{center}
+  \begin{psmatrix}[mnode=r,colsep=-1]
+                           & \MyNode{Project Manager} \\[-1cm]
+                           &                 & \MyNode{Consulting engineer} \\
+    \MyNode{Subcontractor} &                 & \MyNode{Subcontractor}
+  \end{psmatrix}
+  \ncangle[angleA=-90,angleB=180]{1,2}{2,3}
+  \psset{angleA=-90,angleB=90,armB=0.8}
+  \ncangle{1,2}{3,1}
+  \ncangle{1,2}{3,3}
+\end{center}
+\end{verbatim}
+
+\end{document}

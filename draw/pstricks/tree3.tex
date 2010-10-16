@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{pst-tree}
+\pagestyle{empty}
+\begin{document}
+\psset{radius=6pt,dotsize=4pt,treefit=loose}
+\begin{center}
+  {\Large Signalling Game}
+
+  \vspace{.3in}
+  \pstree[treemode=R]
+    {\Tcircle{0}}
+    {\pstree{\Tcircle{1}^{X}_{$\frac{1}{2}$}}
+            {\pstree{\Tcircle[name=XU2,linestyle=dashed]{2}^{U}}
+                    {\Tdot~{(0,0)}^{L}
+                     \Tdot~{(4,1)}_{R}}
+             \pstree{\Tcircle[name=XD2,linestyle=dashed]{2}_{D}}
+                    {\Tdot~{(3,0)}^{L}
+                     \Tdot~{(1,1)}_{R}}}
+     \pstree{\Tcircle{1}^{$\frac{1}{2}$}_{Y}}
+            {\pstree{\Tcircle[name=YU2,linestyle=dashed]{2}^{U}}
+                    {\Tdot~{(1,2)}^{L}
+                     \Tdot~{(2,0)}_{R}}
+             \pstree{\Tcircle[name=YD2,linestyle=dashed]{2}_{D}}
+                    {\Tdot~{(3,3)}^{L}
+                     \Tdot~{(0,1)}_{R}}}}
+  % Other connections
+  \ncarc[linestyle=dashed,arcangle=-20]{XU2}{YU2}
+  \ncarc[linestyle=dashed,arcangle=20]{XD2}{YD2}
+\end{center}
+\end{document}

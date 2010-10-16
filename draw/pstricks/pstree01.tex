@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{pst-tree}
+\pagestyle{empty}
+\begin{document}
+
+\newcommand{\MyNode}[2][cyan]{\Tr{\psshadowbox[fillcolor=#1]{\makebox[4cm]{\color{blue}#2}}}}
+\psset{treesep=2.5}
+\begin{center}
+\textbf{With pstree}
+
+\bigskip
+  \pstree{\MyNode[red!10]{Top Level}}
+         {\pstree{\renewcommand{\psedge}[2]{%
+                    \ncangle[angleA=-90,angleB=0]{#1}{#2}}
+                  \MyNode[red!20]{Left \#1}}
+                 {\renewcommand{\psedge}[2]{%
+                    \ncangles[angle=0,armA=0.7]{#1}{#2}}
+                  \pstree{\MyNode[red!30]{Left \#2}}
+                         {\MyNode[red!40]{Left \#3}}}
+          \pstree{\renewcommand{\psedge}[2]{%
+                    \ncangle[angleA=-90,angleB=180]{#1}{#2}}
+                  \MyNode[red!50]{Right \#1}}
+                 {\renewcommand{\psedge}[2]{%
+                    \ncangles[angle=180,armA=0.7]{#1}{#2}}
+                  \pstree{\MyNode[red!60]{Right \#2}}
+                         {\MyNode[red!70]{Right \#3}}}}
+
+
+\bigskip
+\textbf{With psmatrix}
+
+\bigskip
+
+  \begin{psmatrix}[mnode=r,colsep=-0.2]
+                      & \MyNode[red!10]{Top Level} \\
+    \MyNode[red!20]{Left \#1} && \MyNode[red!30]{Right \#1} \\
+    \MyNode[red!40]{Left \#2} && \MyNode[red!50]{Right \#2} \\
+    \MyNode{Left \#3} && \MyNode{Right \#3}
+  \end{psmatrix}
+  \ncangle[angleA=-90,angleB=0]{1,2}{2,1}
+  \ncangle[angleA=-90,angleB=180]{1,2}{2,3}
+  \psset{armA=0.7}
+  \ncangles[angle=0]{2,1}{3,1}
+  \ncangles[angle=0]{3,1}{4,1}
+  \ncangles[angle=180]{2,3}{3,3}
+  \ncangles[angle=180]{3,3}{4,3}
+\end{center}
+
+
+\clearpage
+\small
+\begin{verbatim}
+\usepackage{pst-tree}
+\begin{document}
+
+\newcommand{\MyNode}[2][cyan]{\Tr{\psshadowbox[fillcolor=#1]{\makebox[4cm]{\color{blue}#2}}}}
+\psset{treesep=2.5}
+\begin{center}
+\textbf{With pstree}
+
+\bigskip
+  \pstree{\MyNode[red!10]{Top Level}}
+         {\pstree{\renewcommand{\psedge}[2]{%
+                    \ncangle[angleA=-90,angleB=0]{#1}{#2}}
+                  \MyNode[red!20]{Left \#1}}
+                 {\renewcommand{\psedge}[2]{%
+                    \ncangles[angle=0,armA=0.7]{#1}{#2}}
+                  \pstree{\MyNode[red!30]{Left \#2}}
+                         {\MyNode[red!40]{Left \#3}}}
+          \pstree{\renewcommand{\psedge}[2]{%
+                    \ncangle[angleA=-90,angleB=180]{#1}{#2}}
+                  \MyNode[red!50]{Right \#1}}
+                 {\renewcommand{\psedge}[2]{%
+                    \ncangles[angle=180,armA=0.7]{#1}{#2}}
+                  \pstree{\MyNode[red!60]{Right \#2}}
+                         {\MyNode[red!70]{Right \#3}}}}
+
+
+\bigskip
+\textbf{With psmatrix}
+
+\bigskip
+
+  \begin{psmatrix}[mnode=r,colsep=-0.2]
+                      & \MyNode[red!10]{Top Level} \\
+    \MyNode[red!20]{Left \#1} && \MyNode[red!30]{Right \#1} \\
+    \MyNode[red!40]{Left \#2} && \MyNode[red!50]{Right \#2} \\
+    \MyNode{Left \#3} && \MyNode{Right \#3}
+  \end{psmatrix}
+  \ncangle[angleA=-90,angleB=0]{1,2}{2,1}
+  \ncangle[angleA=-90,angleB=180]{1,2}{2,3}
+  \psset{armA=0.7}
+  \ncangles[angle=0]{2,1}{3,1}
+  \ncangles[angle=0]{3,1}{4,1}
+  \ncangles[angle=180]{2,3}{3,3}
+  \ncangles[angle=180]{3,3}{4,3}
+\end{verbatim}
+
+\end{document}

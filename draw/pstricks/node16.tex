@@ -1,0 +1,48 @@
+\documentclass{minimal}% Jean-C^ome Charpentier 2007-07-07
+\usepackage{pst-node,pst-slpe}
+\usepackage{multido}
+\SpecialCoor
+
+\newcommand\graphecomplet[2][3]{% \graphecomplet[rayon]{ordre du graphe}
+\begin{pspicture}(-#1,-#1)(#1,#1)
+  \degrees[#2]%
+  \multido{\itheta=0+1}{#2}{%
+    \cnodeput[fillstyle=ccslope](#1;\itheta){N\itheta}{$N_{\itheta}$}}
+  \multido{\ii=0+1}{#2}{%
+    \multido{\ij=0+1}{#2}{\ifnum\ii<\ij 
+       \ncarc[linecolor=red!80]{<->}{N\ii}{N\ij}\fi}}
+\end{pspicture}}
+
+\begin{document}
+
+\graphecomplet{5}
+%
+\hspace{1cm}
+\graphecomplet[4]{11}
+
+\clearpage
+\begin{verbatim}
+\usepackage{pst-node,pst-slpe}
+\usepackage{multido}
+\SpecialCoor
+
+\newcommand\graphecomplet[2][3]{% \graphecomplet[rayon]{ordre du graphe}
+\begin{pspicture}(-#1,-#1)(#1,#1)
+  \degrees[#2]%
+  \multido{\itheta=0+1}{#2}{%
+    \cnodeput[fillstyle=ccslope](#1;\itheta){N\itheta}{$N_{\itheta}$}}
+  \multido{\ii=0+1}{#2}{%
+    \multido{\ij=0+1}{#2}{\ifnum\ii<\ij 
+       \ncarc[linecolor=red!80]{<->}{N\ii}{N\ij}\fi}}
+\end{pspicture}}
+
+\begin{document}
+
+\graphecomplet{5}
+%
+\hspace{1cm}
+\graphecomplet[4]{11}
+\end{verbatim}
+
+
+\end{document}

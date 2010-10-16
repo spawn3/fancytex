@@ -1,0 +1,82 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{pst-node}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{forloop}	
+\usepackage{amsmath}	
+\newcommand\equalValue[2]{\ncline{*-*}{#1}{#2}}%
+\newcommand\oppositeValue[2]{\ncline{*-o}{#1}{#2}}%
+\newcommand\halfValue[2]{\ncline{#1}{#2}}%
+\newcommand\halfOppositeValue[2]{%
+  \ncline{o-o}{#1}{#2}%
+  \ncput[npos=0]{\psdot[dotscale=0.5]}%
+  \ncput[npos=1]{\psdot[dotscale=0.5]}}
+\newcommand\nonZero[1]{\ncline[linestyle=none]{*-}{#1}{#1}}%
+\newcounter{identRow}%%Counters for the loop
+\newcounter{identCol}%  
+\newcounter{endMatrix}%
+\newsavebox\PBox
+\newenvironment{symmatrix}[2]{%	% Macro definitions
+  \setcounter{endMatrix}{#1}%
+  \addtocounter{endMatrix}{-1}% 
+  \psset{arrowscale=2}
+  \begin{lrbox}{\PBox}
+    \begin{psmatrix}[colsep=.5cm,rowsep=.25cm,mnode=dot,dotsize=1.5pt]%
+    \forloop{identRow}{0}{\value{identRow} < #1}{%
+       \forloop{identCol}{1}{\value{identCol} < #2}{&}%
+       \ifnum\theidentRow<\theendMatrix \\\fi}%
+    \end{psmatrix}}
+{\end{lrbox}\[\left(\arraycolsep=2pt%
+  \array{c}\usebox\PBox\endarray\right)\]}
+ 
+\begin{document}
+
+\begin{symmatrix}{3}{6}
+  \equalValue{2,3}{3,6}
+  \oppositeValue{2,1}{3,4}
+  \halfOppositeValue{2,2}{3,5}
+  \nonZero{2,5}
+\end{symmatrix}
+
+\small
+\begin{verbatim}
+\usepackage{pst-node}
+\usepackage{forloop}	
+\usepackage{amsmath}	
+\newcommand\equalValue[2]{\ncline{*-*}{#1}{#2}}%
+\newcommand\oppositeValue[2]{\ncline{*-o}{#1}{#2}}%
+\newcommand\halfValue[2]{\ncline{#1}{#2}}%
+\newcommand\halfOppositeValue[2]{%
+  \ncline{o-o}{#1}{#2}%
+  \ncput[npos=0]{\psdot[dotscale=0.5]}%
+  \ncput[npos=1]{\psdot[dotscale=0.5]}}
+\newcommand\nonZero[1]{\ncline[linestyle=none]{*-}{#1}{#1}}%
+\newcounter{identRow}%%Counters for the loop
+\newcounter{identCol}%  
+\newcounter{endMatrix}%
+\newsavebox\PBox
+\newenvironment{symmatrix}[2]{%	% Macro definitions
+  \setcounter{endMatrix}{#1}%
+  \addtocounter{endMatrix}{-1}% 
+  \psset{arrowscale=2}
+  \begin{lrbox}{\PBox}
+    \begin{psmatrix}[colsep=.5cm,rowsep=.25cm,mnode=dot,dotsize=1.5pt]%
+    \forloop{identRow}{0}{\value{identRow} < #1}{%
+       \forloop{identCol}{1}{\value{identCol} < #2}{&}%
+       \ifnum\theidentRow<\theendMatrix \\\fi}%
+    \end{psmatrix}}
+{\end{lrbox}\[\left(\arraycolsep=2pt%
+  \array{c}\usebox\PBox\endarray\right)\]}
+ 
+\begin{document}
+
+\begin{symmatrix}{3}{6}
+  \equalValue{2,3}{3,6}
+  \oppositeValue{2,1}{3,4}
+  \halfOppositeValue{2,2}{3,5}
+  \nonZero{2,5}
+\end{symmatrix}
+\end{verbatim}
+
+\end{document}
+

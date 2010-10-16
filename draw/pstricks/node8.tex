@@ -1,0 +1,44 @@
+\listfiles
+\documentclass[12pt]{article}
+\usepackage{pstricks}
+\usepackage{pst-node}
+
+\begin{document}
+
+\begin{pspicture}(10,5)
+%\psgrid[subgriddiv=2,griddots=10,subgriddots=10]
+\pnode(0,3){V}
+\cnode(1.5,3){0.25cm}{K1}
+\fnode[framesize=1.5cm](4,3){G1}\rput(4,3){\Large $G_1$}
+\fnode[framesize=1.5cm](4,1){G2}\rput(4,1){\Large $G_2$}
+\cnode*(6.5,3){0.1cm}{K2}
+\pnode(8,3){X}
+\psset{linewidth=1.5pt,arrows=->}
+\ncline{V}{K1}\naput{\Large V}
+\ncline{K1}{G1}
+\ncline{G1}{X}\naput[npos=0.75]{\Large X}
+\ncangle[angleA=-90,angleB=0]{K2}{G2}
+\ncangle[angleA=180,angleB=-90]{G2}{K1}
+\nbput[npos=2.5]{\textbf{\Large -}}
+\end{pspicture}
+
+\begin{verbatim}
+\begin{pspicture}(10,5)
+%\psgrid[subgriddiv=2,griddots=10,subgriddots=10]
+\pnode(0,3){V}
+\cnode(1.5,3){0.25cm}{K1}
+\fnode[framesize=1.5cm](4,3){G1}\rput(4,3){\Large $G_1$}
+\fnode[framesize=1.5cm](4,1){G2}\rput(4,1){\Large $G_2$}
+\cnode*(6.5,3){0.1cm}{K2}
+\pnode(8,3){X}
+\psset{linewidth=1.5pt,arrows=->}
+\ncline{V}{K1}\naput{\Large V}
+\ncline{K1}{G1}
+\ncline{G1}{X}\naput[npos=0.75]{\Large X}
+\ncangle[angleA=-90,angleB=0]{K2}{G2}
+\ncangle[angleA=180,angleB=-90]{G2}{K1}
+\nbput[npos=2.5]{\textbf{\Large -}}
+\end{pspicture}
+\end{verbatim}
+
+\end{document}

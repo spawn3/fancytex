@@ -1,0 +1,100 @@
+\documentclass[a4paper]{article}
+\usepackage{pst-tree}
+\newcommand{\Test}{%
+\pstree[treemode=R,levelsep=4]
+       {\TC*}
+       {\Tr{aa}
+        \Tr{bbbb}
+        \Tr{cccccccccc}
+        \Tr{d}}
+\vspace{3mm}}
+
+\newcommand{\TestsArms}{%
+\renewcommand{\psedge}[2]{\ncdiagg{##2}{##1}}
+\Test
+\hfill
+\renewcommand{\psedge}[2]{\ncdiagg[armA=0]{##2}{##1}}
+\Test
+
+\renewcommand{\psedge}[2]{\ncdiagg[armA=1]{##2}{##1}}
+\Test
+\hfill
+\renewcommand{\psedge}[2]{\ncdiagg[armA=-1]{##2}{##1}}
+\Test
+
+\renewcommand{\psedge}[2]{\ncdiagg[armA=-2]{##2}{##1}}
+\Test
+
+\renewcommand{\psedge}[2]{\ncdiag[armA=-1]{##2}{##1}}
+\Test
+\hfill
+\renewcommand{\psedge}[2]{\ncdiag[armB=-1]{##2}{##1}}
+\Test
+
+\renewcommand{\psedge}[2]{\ncdiag[armB=-2]{##2}{##1}}
+\Test
+\hfill
+\renewcommand{\psedge}[2]{\ncdiag[arm=-1]{##2}{##1}}
+\Test
+
+\renewcommand{\psedge}[2]{\ncdiag[armB=2]{##2}{##1}}
+\Test
+\hfill
+\renewcommand{\psedge}[2]{\ncdiag[arm=1]{##2}{##1}}
+\Test
+}
+
+\begin{document}
+\psset{angleA=180,nodesep=0.1}
+\TestsArms
+\clearpage
+\makeatletter
+\pst@def{NCDiagg}<%
+% Modification of GetArmA to manage the case of armA < 0
+% as in Beta material released in 1994 after the 0.93a version
+/GetArmA {
+ArmTypeA 0 eq
+%  D.G. modification begin - Apr. 23, 2001
+%   { /xA2 ArmA AngleA cos mul xA1 add def
+%     /yA2 ArmA AngleA sin mul yA1 add def }
+  { /xA2 ArmA abs AngleA cos mul
+         ArmA 0 lt { xA OffsetA AngleA AddOffset} { xA1 } ifelse
+         add def
+    /yA2 ArmA abs AngleA sin mul yA1 add def }
+%  D.G. modification end
+  { ArmTypeA 1 eq {{exch}} {{}} ifelse
+    /Do ED
+    ArmA AngleA XYPos OffsetA AngleA AddOffset yA add
+    /yA2 ED
+    xA add
+    /xA2 ED} ifelse } def
+%
+% Modification of GetArmB to manage the case of armB < 0
+% as in Beta material released in 1994 after the 0.93a version
+/GetArmB {
+ArmTypeB 0 eq
+% D.G. modification begin - Apr. 23, 2001
+%  { /xB2 ArmB AngleB cos mul xB1 add def
+%    /yB2 ArmB AngleB sin mul yB1 add def }
+  { /xB2 ArmB abs AngleB cos mul
+         ArmB 0 lt { xB OffsetB AngleB AddOffset} { xB1 } ifelse
+         add def
+    /yB2 ArmB abs AngleB sin mul yB1 add def }
+% D.G. modification end
+  { ArmTypeB 1 eq {{exch}} {{}} ifelse
+    /Do ED
+    ArmB AngleB XYPos OffsetB AngleB AddOffset yB add
+    /yB2 ED xB add
+    /xB2 ED} ifelse } def
+%
+GetEdgeA GetArmA yB yA2 sub xB xA2 sub Atan 180 add
+/AngleB ED
+GetEdgeB mark xB1 yB1 xA2 yA2 ArmA 0 ne { xA1 yA1 } if
+tx@Dict begin false Line end
+/LPutVar [ xB1 yB1 xA2 yA2 xA1 yA1 ] cvx def
+/LPutPos { LPutLines } def
+/HPutPos { HPutLines } def
+/VPutPos { VPutLines } def>
+\makeatother
+\TestsArms
+\end{document}

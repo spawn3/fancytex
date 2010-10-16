@@ -1,0 +1,30 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{pstricks-add}
+\begin{document}
+
+\begin{pspicture}(5,5)
+\pnode(2.5,2.5){A}
+\psdot(A)
+\makeatletter
+\pscustom{
+  \code{ \psGetNodeCenter{A}
+  A.x \pst@number\psxunit mul A.y \pst@number\psxunit mul moveto
+  A.x 15 string cvs /Helvetica findfont 12 scalefont setfont show
+}}
+\makeatother
+\end{pspicture}
+
+\begin{verbatim}
+\begin{pspicture}(5,5)
+\pnode(2.5,2.5){A}
+\psdot(A)
+\makeatletter
+\pscustom{
+  \code{ \psGetNodeCenter{A}
+  A.x \pst@number\psxunit mul A.y \pst@number\psxunit mul moveto
+  A.x 15 string cvs /Helvetica findfont 12 scalefont setfont show
+}}
+\makeatother
+\end{pspicture}
+\end{verbatim}
+\end{document}

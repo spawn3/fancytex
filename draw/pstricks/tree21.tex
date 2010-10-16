@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{pst-tree}
+\def\TTR{\Tr{\pspolygon*[linecolor=blue!50]%
+  (0.4,-0.2)(0.4,0.2)(-0.4,-0.2)(-0.4,0.2)}}
+
+\begin{document}
+
+\Large
+\psset{nodesep=3pt,treesep=2cm}
+\pstree{\TTR}{
+  \pstree{\TTR}{
+    \pstree{\TTR}{\Tr{S}\Tr{R}}
+    \Tr{T}}
+  \Tr{U}}
+
+
+
+\begin{verbatim}
+\def\TTR{\Tr{\pspolygon*[linecolor=blue!50]%
+  (0.4,-0.2)(0.4,0.2)(-0.4,-0.2)(-0.4,0.2)}}
+
+\Large
+\psset{nodesep=3pt,treesep=2cm}
+\pstree{\TTR}{
+  \pstree{\TTR}{
+    \pstree{\TTR}{\Tr{S}\Tr{R}}
+    \Tr{T}}
+  \Tr{U}}
+\end{verbatim}
+\end{document}

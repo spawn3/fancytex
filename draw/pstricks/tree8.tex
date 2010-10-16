@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+
+\usepackage{pst-tree}
+
+\makeatletter
+
+\def\end@@treenode{%
+\pstree@bboxadjust
+\gdef\pstree@bboxadjust{}%
+\ifpsshowbbox\pstree@showbbox\fi
+\pstree@node
+\endgroup
+\ifnum\pstreelevel>\z@
+\pstree@edge{\pspred}{\pssucc}%
+\expandafter\pst@shortput
+\else
+\expandafter\ignorespaces
+\fi
+% D.G. modification begin - May. 31, 1999
+\PsTreeNodeAfterHook}
+% D.G. modification end
+
+\def\PsTreeNodeAfterHook{}
+
+\makeatother
+
+\SpecialCoor
+
+\newcommand{\LinkedList}[1]{%
+\begin{pspicture}(2,1)
+  \psgrid[subgriddiv=0,gridlabels=0](2,1)
+  \rput(0.5,0.5){\LARGE $#1$}
+  % \pspred-\the\psnodecnt will be \pssucc when the node will be drawn
+  \pnode(1.5,0.5){R-\pspred-\the\psnodecnt}
+\end{pspicture}}
+
+\newcommand{\DoubleLinkedList}[1]{%
+\begin{pspicture}(3,1)
+  \psgrid[subgriddiv=0,gridlabels=0](3,1)
+  \rput(0.5,0.5){\LARGE $#1$}
+  % \pspred-\the\psnodecnt will be \pssucc when the node will be drawn
+  \pnode(1.5,0.5){L1-\pspred-\the\psnodecnt}
+  \pnode(1.75,0){L2-\pspred-\the\psnodecnt}
+  \pnode(2.5,0.5){R-\pspred-\the\psnodecnt}
+\end{pspicture}}
+% Tree node for linked or double linked list
+\newcommand{\LinkedListNode}[1]{\Tr{\LinkedList{#1}}}
+\newcommand{\DoubleLinkedListNode}[1]{\Tr{\DoubleLinkedList{#1}}}
+\setlength{\parindent}{0cm}
+\pagestyle{empty}
+
+\begin{document}
+\renewcommand{\PsTreeNodeAfterHook}{\pnode(R-\pssucc){\pssucc}}
+\psset{treemode=R,treesep=4,arrows=->,arrowscale=2}
+\pstree[levelsep=3]
+       {\LinkedListNode{c_4}}
+       {\pstree{\LinkedListNode{c_3}}
+               {\pstree{\LinkedListNode{c_2}}
+                       {\LinkedListNode{c_1}}}}
+\vspace{2cm}
+
+\makeatletter
+\renewcommand{\PsTreeNodeAfterHook}{%
+\pnode(R-\pssucc){\pssucc}
+\edef\@tempa{T}%
+\if\pspred\@tempa
+\else
+  \pcbar[angle=-90,armB=0.75,linecolor=red](L1-\pssucc)(L2-\pspred)
+\fi}
+\makeatother
+
+\pstree[levelsep=4]
+       {\DoubleLinkedListNode{c_4}}
+       {\pstree{\DoubleLinkedListNode{c_3}}
+               {\pstree{\DoubleLinkedListNode{c_2}}
+                       {\DoubleLinkedListNode{c_1}}}}
+
+\end{document}

@@ -1,0 +1,43 @@
+\documentclass{article}% voss 2007-02-27
+
+\usepackage{pst-node,multido}
+\SpecialCoor
+
+\def\colA#1{\ifcase#1red\or magenta\or yellow\or cyan\or green\or blue\or gray\fi}
+\def\colB#1{\ifcase#1blue\or gray\or red\or magenta\or yellow\or cyan\or green\fi}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{pspicture}(-3,-3)(3,3)
+\multido{\rA=90.0+51.429,\nA=0+1}{7}{%
+  \Cnode*[linecolor=\colA{\nA}](2.5;\rA){\nA2}
+  \Cnode*[linecolor=\colB{\nA}](1.25;\rA){\nA1}
+  \ncline{\nA2}{\nA1}}
+\multido{\nA=0+1,\nAA=1+1,\nB=3+1,\nC=4+1}{7}{%
+  \ncline{\nA2}{\nAA2}\ncline{\nA1}{\nB1}\ncline{\nA1}{\nC1}}
+\ncline{62}{02}
+\end{pspicture}
+
+\begin{verbatim}
+\usepackage{pst-node,multido}
+\SpecialCoor
+
+\def\colA#1{\ifcase#1red\or magenta\or yellow\or cyan\or green\or blue\or gray\fi}
+\def\colB#1{\ifcase#1blue\or gray\or red\or magenta\or yellow\or cyan\or green\fi}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{pspicture}(4,3)
+\multido{\rA=90.0+51.429,\nA=0+1}{7}{%
+  \Cnode*[linecolor=\colA{\nA}](2.5;\rA){\nA2}
+  \Cnode*[linecolor=\colB{\nA}](1.25;\rA){\nA1}
+  \ncline{\nA2}{\nA1}}
+\multido{\nA=0+1,\nAA=1+1,\nB=3+1,\nC=4+1}{7}{%
+  \ncline{\nA2}{\nAA2}\ncline{\nA1}{\nB1}\ncline{\nA1}{\nC1}}
+\ncline{62}{02}
+\end{pspicture}
+\end{verbatim}
+
+\end{document}

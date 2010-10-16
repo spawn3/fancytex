@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{pst-tree}
+\setlength{\parindent}{0cm}
+\pagestyle{empty}
+\begin{document}
+
+\pstree{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Ttri[fillstyle=solid,fillcolor=cyan!40]{A}
+        \Ttri[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \Ttri[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\newcommand{\MyTtri}[2][]{\Tr[ref=t]{\pstribox[#1]{#2}}}
+
+\vspace{1cm}
+\pstree[levelsep=1cm]{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\MyTtri[fillstyle=solid,fillcolor=cyan!40]{A}
+        \MyTtri[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \MyTtri[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\vspace{1cm}
+\pstree{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Tr[ref=br]{\pstribox[fillstyle=solid,fillcolor=cyan!40]{A}}
+        \Tr[ref=t]{\pstribox[fillstyle=solid,%
+		     fillcolor=yellow!50]{AAA}}
+        \Tr[ref=bl]{\pstribox[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}}
+
+\clearpage
+\small
+\begin{verbatim}
+\pstree{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Ttri[fillstyle=solid,fillcolor=cyan!40]{A}
+        \Ttri[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \Ttri[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\newcommand{\MyTtri}[2][]{\Tr[ref=t]{\pstribox[#1]{#2}}}
+
+\vspace{1cm}
+\pstree[levelsep=1cm]{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\MyTtri[fillstyle=solid,fillcolor=cyan!40]{A}
+        \MyTtri[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \MyTtri[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\vspace{1cm}
+\pstree{\Tcircle[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Tr[ref=br]{\pstribox[fillstyle=solid,fillcolor=cyan!40]{A}}
+        \Tr[ref=t]{\pstribox[fillstyle=solid,%
+		     fillcolor=yellow!50]{AAA}}
+        \Tr[ref=bl]{\pstribox[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}}
+\end{verbatim}
+
+\clearpage
+\pstree{\Toval[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Toval[fillstyle=solid,fillcolor=cyan!40]{A}
+        \Toval[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \Toval[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\newcommand{\MyToval}[2][]{\Tr{\psovalbox[#1]{#2}}}
+
+\vspace{1cm}
+\pstree[levelsep=1cm]{\Toval[fillstyle=solid,fillcolor=red!60]{A}}
+       {\MyToval[fillstyle=solid,fillcolor=cyan!40]{A}
+        \MyToval[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \MyToval[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\vspace{1cm}
+\pstree{\Toval[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Tr[ref=r]{\psovalbox[fillstyle=solid,fillcolor=cyan!40]{A}}
+        \Tr[ref=t]{\psovalbox[fillstyle=solid,%
+		     fillcolor=yellow!50]{AAA}}
+        \Tr[ref=l]{\psovalbox[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}}
+
+\clearpage
+\small
+\begin{verbatim}
+\pstree{\Toval[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Toval[fillstyle=solid,fillcolor=cyan!40]{A}
+        \Toval[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \Toval[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\newcommand{\MyToval}[2][]{\Tr[ref=t]{\psovalbox[#1]{#2}}}
+
+\vspace{1cm}
+\pstree[levelsep=1cm]{\Toval[fillstyle=solid,fillcolor=red!60]{A}}
+       {\MyToval[fillstyle=solid,fillcolor=cyan!40]{A}
+        \MyToval[fillstyle=solid,fillcolor=yellow!50]{AAA}
+        \MyToval[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}
+
+\vspace{1cm}
+\pstree{\Toval[fillstyle=solid,fillcolor=red!60]{A}}
+       {\Tr[ref=br]{\psovalbox[fillstyle=solid,fillcolor=cyan!40]{A}}
+        \Tr[ref=t]{\psovalbox[fillstyle=solid,%
+		     fillcolor=yellow!50]{AAA}}
+        \Tr[ref=bl]{\psovalbox[fillstyle=solid,fillcolor=blue!40]{AAA AAA AAA}}}
+\end{verbatim}
+
+
+\end{document}

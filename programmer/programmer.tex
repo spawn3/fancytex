@@ -1,0 +1,33 @@
+\makeatletter
+\let\ifGm@compatii\relax
+\makeatother
+\documentclass[9pt]{beamer}
+\usepackage{taijibeamer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% font
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\AtBeginSection[]{ % 在每个Section前都会加入的Frame
+%  \frame<handout:0>{
+%    \frametitle{Outline}
+%    \tableofcontents[current, currentsection]
+%  }
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title{编程之道}
+\author{Dong Guanjun}
+\date{\today}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\frame{\frametitle{目录}\tableofcontents}
+\include{programmer_base}
+
+\newpage
+\end{document}

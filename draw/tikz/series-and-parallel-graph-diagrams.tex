@@ -1,0 +1,199 @@
+%Author: Paul Thompson    06-08-2009
+%   Series and Parallel graph diagrams using nesting of tikz-environments.
+
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage, floats]{preview}
+%\PreviewEnvironment{figure}
+\setlength\PreviewBorder{5pt}%
+
+%%%>
+\begin{comment}
+:Title: Series and parallel graph diagrams
+:Page: 9
+
+This example shows latex macros which nest Tikz environments together to generate series and parallel graph diagrams.
+This shows an example of latex-macros and nesting of Tikz environments being used to draw large recursively-defined (nested) diagrams.
+
+Download the PDF to see more examples. 
+
+:Source: `pgf-users mailing list`__
+
+.. __: http://www.nabble.com/Algorithmically-generating-acyclic-source-terminal-network-graphs-to24804699.html
+
+\end{comment}
+
+
+
+
+\begin{document}
+
+\newcounter{parlevel}
+\newcounter{serlevel}
+
+%define a parallel block:  a tikz-pic with two nodes drawn on top of each other and some connecting lines
+%the node contents comes from  #1 and #2
+%the two nodes are named &#39;nTsp&#39;  and &#39;nBsp&#39;     where s and p are serial and parallel levels which increment
+\newcommand{\parblock}[2]
+{
+   \tikz[baseline,remember picture,inner sep=0pt,outer sep=0pt,node distance=0.25cm]
+   {
+       \addtocounter{parlevel}{1}
+       %special names for the two nodes:
+       \def\nTsp{nT-\arabic{serlevel}-\arabic{parlevel}}
+       \def\nBsp{nB-\arabic{serlevel}-\arabic{parlevel}}
+       %
+       %define the two nodes:
+       \node(\nTsp){#1};
+       \node[below=of \nTsp](\nBsp){#2};
+       %
+       %use bounding box so that the lines are based on the widest one
+       \path (current bounding box.west) -- +(-0.125,0) coordinate (source);
+       \path (current bounding box.east) -- +( 0.125,0) coordinate (dest);
+       %
+       %draw up/down and across from source (left)
+       \draw (source) |- (\nTsp.west);
+       \draw (source) |- (\nBsp.west);
+       %
+       %draw across and up/down to dest (right)
+       \draw (\nTsp.east) -| (dest);
+       \draw (\nBsp.east) -| (dest);
+       %
+       %add extra horizontal lines at source and dest
+       \draw (source) -- +(-0.125,0);
+       \draw (dest) -- +( 0.125,0);
+       \addtocounter{parlevel}{-1}
+   }
+}
+
+
+\newcommand{\block}[1]
+{
+   \tikz[baseline,remember picture,inner sep=2pt]
+   {
+       \node[draw,shape=rectangle](#1){#1};
+   }
+}
+
+%define a series block:  a tikz-pic with two nodes drawn next to each other and some connecting lines
+%the node contents comes from  #1 and #2
+%the two nodes are named &#39;nAsp&#39;  and &#39;nBsp&#39;     where x,y are serial and parallel levels which increment
+\newcommand{\serblock}[2]
+{
+   \tikz[baseline,remember picture,inner sep=0pt,outer sep=0pt,node distance=0.25cm]
+   {
+       \addtocounter{serlevel}{1}
+       %special names for the two nodes:
+       \def\nLsp{nL-\arabic{serlevel}-\arabic{parlevel}}
+       \def\nRsp{nR-\arabic{serlevel}-\arabic{parlevel}}
+       %
+       %define the two nodes:
+       \node(\nLsp){#1};
+       \node[right=of \nLsp](\nRsp){#2};
+       %
+       %define source and dest just past the nAsp and nBsp nodes
+       \path (\nLsp.west) -- +(-0.125,0) coordinate (source);
+       \path (\nRsp.east) -- +( 0.125,0) coordinate (dest);
+       %
+       %add lines at extreme ends
+       \draw (source) -- (\nLsp.west);
+       \draw (\nLsp.east) -- (\nRsp.west);
+       \draw (\nRsp.east) -- (dest);
+       \addtocounter{serlevel}{-1}
+   }
+}
+
+
+
+\begin{figure}
+\centering
+\parblock{\block{top}}{\block{bottom}}
+\caption{Parallel block}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\serblock{\block{left}}{\block{right}}
+\caption{Series block}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\parblock
+{\serblock{\block{top-left}}{\block{top-right}}}
+{\serblock{\block{bottom-left}}{\block{bottom-right}}}
+\caption{Series blocks in parallel}
+\end{figure}
+
+\begin{figure}
+\centering
+\serblock
+{\parblock{\block{left-top}}{\block{left-bottom}}}
+{\parblock{\block{right-top}}{\block{right-bottom}}}
+\caption{Parallel blocks in series}
+\end{figure}
+
+\begin{figure}
+\centering
+\serblock
+{\serblock{\block{left-left}}{\block{left-right}}}
+{\serblock{\block{right-left}}{\block{right-right}}}
+\caption{Series blocks in series}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\parblock
+{\parblock{\block{top-top}}{\block{top-bottom}}}
+{\parblock{\block{bottom-top}}{\block{bottom-bottom}}}
+\caption{Parallel blocks in Parallel}
+\end{figure}
+
+\begin{figure}
+\centering
+\parblock
+{\parblock{\parblock{\block{t-t-t}}{\block{t-t-b}}}{\parblock{\block{t-b-t}}{\block{t-b-b}}}}
+{\parblock{\parblock{\block{b-t-t}}{\block{b-t-b}}}{\parblock{\block{b-b-t}}{\block{b-b-b}}}}
+\caption{Parallel blocks in parallel, in parallel}
+\end{figure}
+
+\begin{figure}
+\centering
+\serblock
+{\parblock{\parblock{\block{l-t-t}}{\block{l-t-b}}}{\parblock{\block{l-b-t}}{\block{l-b-b}}}}
+{\parblock{\parblock{\block{r-t-t}}{\block{r-t-b}}}{\parblock{\block{r-b-t}}{\block{r-b-b}}}}
+\caption{Parallel blocks in parallel, in series}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\serblock
+{\parblock{\serblock{\parblock{\serblock{\block{}}{\serblock{\parblock{\block{}}{\block{}}}{\block{}}}}
+{\serblock{\parblock{\serblock{\parblock{\block{}}{\block{}}}{\block{}}}{\block{}}}{\block{}}}}
+{\parblock{\serblock{\parblock{\block{}}{\block{}}}
+{\block{}}}{\serblock{\parblock{\serblock{\block{}}{\block{}}}{\parblock{\block{}}{\block{}}}}
+{\serblock{\block{}}{\block{}}}}}}
+{\serblock{\parblock{\parblock{\serblock{\parblock{\serblock{\block{}}{\block{}}}{\serblock{\parblock{\block{}}{\block{}}}
+{\block{}}}}{\parblock{\block{}}{\serblock{\parblock{\serblock{\block{}}{\block{}}}
+{\parblock{\block{}}{\block{}}}}{\serblock{\block{}}{\block{}}}}}}
+{\serblock{\parblock{\block{}}{\serblock{\parblock{\serblock{\block{}}{\block{}}}
+{\parblock{\block{}}{\block{}}}}{\serblock{\block{}}{\block{}}}}}{\parblock{\serblock{\block{}}
+{\block{}}}{\serblock{\parblock{\block{}}{\block{}}}{\block{}}}}}}{\serblock{\parblock{\serblock{\block{}}
+{\block{}}}{\parblock{\block{}}{\block{}}}}{\serblock{\block{}}{\block{}}}}}
+{\parblock{\serblock{\parblock{\serblock{\block{}}{\block{}}}{\serblock{\parblock{\block{}}
+{\block{}}}{\block{}}}}{\serblock{\parblock{\block{}}{\block{}}}{\block{}}}}{\serblock{\parblock{\block{}}
+{\block{}}}{\block{}}}}}}
+{\parblock{\block{}}{\block{}}}
+
+\caption[Series and Parallel graph diagram]{This example shows latex macros which nest tikz environments together to generate series and parallel graph diagrams.
+This shows an example of latex-macros and nesting of tikz environments being used to draw large recursively-defined (nested) diagrams.}
+\end{figure}
+
+\end{document}

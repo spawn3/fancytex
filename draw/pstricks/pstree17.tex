@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+\usepackage{pst-tree}
+\SpecialCoor
+
+\begin{document}
+
+\pstree[levelsep=1,nodesep=3pt]{\Tr[name=A]{A}}{%
+	\pstree{\Tr[name=B]{B}}{%
+	  \Tr[name=D]{D}
+	  \Tr[name=E]{E}
+	}
+	\pstree{\Tr[name=B]{C}}{%
+	  \Tr[name=F]{F}
+	  \Tr[name=G]{G}
+	}
+}%
+
+\rput[rc](\linewidth,0|A){1.}%
+\rput[rc](\linewidth,0|B){2.}%
+\rput[rc](\linewidth,0|D){30.}%
+\pcline[linestyle=dotted,nodesepA=5pt,nodesepB=0.5em](A)(\linewidth,0|A)%
+\pcline[linestyle=dotted,nodesepA=5pt,nodesepB=0.5em](B)(\linewidth,0|B)%
+\pcline[linestyle=dotted,nodesepA=5pt,nodesepB=1em](G)(\linewidth,0|G)%
+\end{document}
+

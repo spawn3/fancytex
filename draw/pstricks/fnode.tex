@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\pagestyle{empty}
+\begin{document}
+\psset{dimen=middle,subgriddiv=0,griddots=5}
+\SpecialCoor
+\begin{pspicture}(7,7)\psgrid
+  \fnode[framesize=2 4,linecolor=red](2,3){X}
+  \rput(X){\qdisk(0,0){0.2}}
+  \rput([angle=-116.565]X){\LARGE a} % t=atan(2/4)=26.565 ; -90-t
+  \rput([angle=116.565]X){\LARGE b}  % 90+t
+  \rput([angle=63.435]X){\LARGE c}   % 90-t
+  \rput([angle=-63.435]X){\LARGE d}  % -90+t
+%
+  \fnode[framesize=2 2,linecolor=cyan](5,5){Y}
+  \rput([angle=-135]Y){\LARGE A}     % t=atan(2/2)=45 ; -90-t
+  \rput([angle=135]Y){\LARGE B}      % 90+t
+  \rput([angle=45]Y){\LARGE C}       % 90-t
+  \rput([angle=-45]Y){\LARGE D}      % -90+t
+%
+  \fnode[framesize=2 1,linecolor=green](5,1){Z}
+  \rput([angle=-153.435]Z){\LARGE\textcolor{red}{$\bullet$}}
+                                     % t=atan(2/1)=63.435 ; -90-t
+  \rput([angle=153.435]Z){\LARGE\textcolor{blue}{$\bullet$}}   % 90+t
+  \rput([angle=26.565]Z){\LARGE\textcolor{magenta}{$\bullet$}} % 90-t
+  \rput([angle=-26.565]Z){\LARGE\textcolor{yellow}{$\bullet$}} % -90+t
+%
+  \psline{->}(1,0)([angle=-26.565]Z)
+  \psline[linewidth=0.1]{<->}([angle=153.435]Z)([angle=-45]Y)
+\end{pspicture}
+
+\end{document}

@@ -1,0 +1,159 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{pst-tree}
+\usepackage{lscape}
+\usepackage[dvips,width=21cm,height=29.7cm]{geometry}
+
+\makeatletter
+
+\def\end@@treenode{%
+  \pstree@bboxadjust
+  \gdef\pstree@bboxadjust{}%
+  \ifpsshowbbox\pstree@showbbox\fi
+  \pstree@node
+  \endgroup
+  \ifnum\pstreelevel>\z@
+    \pstree@edge{\pspred}{\pssucc}%
+    \expandafter\pst@shortput
+  \else
+    \expandafter\ignorespaces
+  \fi
+  \PsTreeNodeAfterHook}
+\def\PsTreeNodeAfterHook{}
+
+\makeatother
+\SpecialCoor
+\newcommand{\TriBox}{%
+\begin{pspicture}(7,2)
+  \psframe(2,2)
+    \rput[c](1,1.5){\scriptsize\texttt{L-\pspred-\the\psnodecnt}}
+    \dotnode*[dotscale=3](1,1){L-\pspred-\the\psnodecnt}
+  \psframe(2,0)(5,2)
+    \rput[c](3.5,1){%
+      \setlength{\tabcolsep}{0.5mm}
+      \scriptsize
+      \begin{tabular}{lll}
+        \textbackslash\texttt{pspred}   &:& \texttt{\pspred}\\
+        % \pssucc will be updated later
+        \textbackslash\texttt{pssucc}   &:& \texttt{\pspred-\the\psnodecnt}\\
+        \textbackslash\texttt{pnodecnt} &:& \texttt{\the\psnodecnt}
+      \end{tabular}}
+  \psframe(5,0)(7,2)
+    \rput[c](6,1.5){\scriptsize\texttt{R-\pspred-\the\psnodecnt}}
+    \dotnode*[dotscale=3](6,1){R-\pspred-\the\psnodecnt}
+\end{pspicture}}
+
+% A tree node, with three boxes
+\newcommand{\TriBoxNode}{%
+\Tr{\TriBox}
+\pnode(L-\pssucc){\pssucc}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\renewcommand{\PsTreeNodeAfterHook}{\pnode(R-\pspred){\pspred}}
+
+\psset{dimen=middle,treesep=0.5,levelsep=3,ref=t}
+
+\pstree{\TriBoxNode}
+       {\TriBoxNode
+        \TriBoxNode}
+
+\vspace{1cm}
+\pstree{\TriBoxNode}
+       {\pstree{\TriBoxNode}
+               {\TriBoxNode
+                \TriBoxNode}
+        \TriBoxNode}
+
+\vspace{1cm}
+\pstree{\TriBoxNode}
+       {\TriBoxNode
+        \pstree{\TriBoxNode}
+               {\TriBoxNode
+                \TriBoxNode}}
+
+\pstree[thislevelsep=1]
+       {\Tr{}}
+       {\pstree{\TriBoxNode}
+               {\TriBoxNode
+                \pstree{\TriBoxNode}
+                       {\TriBoxNode
+                        \TriBoxNode}}}
+
+\vspace{1cm}
+\pstree[thislevelsep=1]
+       {\Tr{}}
+       {\pstree{\TriBoxNode}
+               {\pstree{\TriBoxNode}
+                       {\TriBoxNode
+                        \TriBoxNode}
+                \TriBoxNode}}
+
+\begin{landscape}
+\pstree{\TriBoxNode}
+       {\pstree{\TriBoxNode}
+               {\pstree{\TriBoxNode}
+                       {\TriBoxNode
+                        \TriBoxNode}
+                \TriBoxNode}
+        \TriBoxNode}
+\end{landscape}
+
+\begin{landscape}
+\psscaleboxto(27,0){%
+\pstree[thislevelsep=1]
+       {\Tr{}}
+       {\pstree{\TriBoxNode}
+               {\pstree{\TriBoxNode}
+                       {\TriBoxNode
+                        \TriBoxNode}
+                \pstree{\TriBoxNode}
+                       {\TriBoxNode
+                        \TriBoxNode}}}
+}
+\end{landscape}
+
+\begin{landscape}
+\psscaleboxto(27,9){%
+\pstree[thislevelsep=1]
+       {\Tr{}}
+       {\pstree{\TriBoxNode}
+               {\pstree{\TriBoxNode}
+                       {\TriBoxNode
+                        \pstree{\TriBoxNode}
+                               {\TriBoxNode
+                                \TriBoxNode}}
+                \pstree{\TriBoxNode}
+                       {\pstree{\TriBoxNode}
+                               {\TriBoxNode
+                                \TriBoxNode}
+                        \TriBoxNode}}}
+}
+
+\clearpage
+\def\noline#1#2{}
+\newcommand\TriBoxN{%  for empty nodes
+  \Tr[edge=\noline]{\Tn}
+  \pnode(L-\pssucc){\pssucc}
+}
+%\psscaleboxto(27,9){%
+\pstree[thislevelsep=1]
+       {\Tr{}}              %      col,row
+       {\pstree{\TriBoxNode}%        1,1
+               {\pstree{\TriBoxNode} %1,2
+                       {\TriBoxN%\TriBoxNode % 1,3
+                        \pstree{\TriBoxNode}% 2,3
+                               {\TriBoxN  % 1,4
+                                \TriBoxNode}} % 2,4
+                \pstree{\TriBoxNode} %2,2
+                       {\pstree{\TriBoxNode} % 3,3
+                               {\TriBoxNode  %3,4
+                                \TriBoxN} %4,4
+                        \TriBoxN}}} %4,3
+%}
+
+\end{landscape}
+
+\end{document}

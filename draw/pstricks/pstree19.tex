@@ -1,0 +1,36 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{mathpazo}
+\usepackage{pst-tree}
+\renewcommand\TR[2][2.1cm]{\Tr{\tabular{p{#1}}#2\endtabular}}
+\parindent0em
+
+\begin{document}
+
+\footnotesize
+\psset{levelsep=3cm,treesep=4mm,nodesep=3pt,linecolor=blue}
+\pstree[treemode=R,thislevelsep=2cm]{\Tr{Mobilitätsmechnismus}}{%
+	\pstree{\TR[1.25cm]{Schwache\\Mobilität}}{%
+		\pstree[thislevelsep=3.5cm]{\TR{Senderinitiierte\\Mobilität}}{%
+			\TR[2.7cm]{Ausführen im\\Zielprozess}
+			\TR[2.7cm]{Ausführen in\\eigenem Prozess}
+		}
+		\pstree[thislevelsep=3.5cm]{\TR{Empfänger-\\initiierte\\Mobilität}}{%
+			\TR[2.7cm]{Ausführen im\\Zielprozess}
+			\TR[2.7cm]{Ausführen in\\eigenem Prozess}
+		}
+	}
+	\pstree{\TR[1.25cm]{Starke\\Mobilität}}{%
+		\pstree[thislevelsep=3.5cm]{\TR{Senderinitiierte\\Mobilität}}{%
+			\TR[2.7cm]{Prozess migrieren}
+			\TR[2.7cm]{Prozess klonen}
+		}
+		\pstree[thislevelsep=3.5cm]{\TR{Empfänger-\\initiierte\\Mobilität}}{%
+			\TR[2.7cm]{Prozess migrieren}
+			\TR[2.7cm]{Prozess klonen}
+		}
+	}
+}
+\end{document}

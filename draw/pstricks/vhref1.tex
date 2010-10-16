@@ -1,0 +1,242 @@
+\documentclass{article}% voss 2006-08-28
+\usepackage{multido,pstricks,pst-node}
+\def\Square{\rule{1cm}{1cm}}
+\SpecialCoor
+\begin{document}
+
+\vspace*{3cm}
+\pspicture[showgrid=true](5,1)%
+\Rnode{A}{\Square}\hspace{3cm}\Rnode{B}{\Square}
+\ncline[linecolor=red,linewidth=2pt,arrowscale=2,arrows=->]{A}{B}
+\endpspicture
+
+\bigskip
+\pspicture[showgrid=true](5,4)%
+\rput[lb](0,0){\Rnode{A}{\Square}\hspace{3cm}\Rnode[vref=3cm]{B}{\Square}}
+\psframe*[linecolor=black!20](4,3)(5,4)
+\pcline[linecolor=red,linestyle=dotted,linewidth=2pt](A)(B)
+\ncline[linecolor=red,linewidth=2pt,arrowscale=2,arrows=->]{A}{B}
+\pnode(4,0.7ex){C}
+\ncline[linecolor=blue,linewidth=2pt,arrowscale=2,arrows=->]{A}{C}
+\pcline{->}(4.5,0.5)(4.5,3.5)\uput[0](4.5,2){vref}
+\pcline[linecolor=white](4.5,0.5)(4.5,1)
+\endpspicture
+
+
+\bigskip
+\pspicture[showgrid=true](7,4)%
+\rput[lb](0,0){\Rnode{A}{\Square}\hspace{3cm}\Rnode[href=4,vref=3cm]{B}{\Square}}
+\psframe*[linecolor=black!20](4,3)(5,4)
+\psframe*[linecolor=black!20](6,3)(7,4)
+\psline[arrows=->](4.5,3.5)(6.5,3.5)\uput[-90](5.5,3.5){href}
+\pcline[linecolor=red,linestyle=dotted,linewidth=2pt](A)(B)
+\ncline[linecolor=red,linewidth=2pt,arrowscale=2,arrows=->]{A}{B}
+\pnode(4,0.7ex){C}
+\ncline[linecolor=blue,linewidth=2pt,arrowscale=2,arrows=->]{A}{C}
+\pcline{->}(4.5,0.5)(4.5,3.5)\uput[0](4.5,2){vref}
+\pcline[linecolor=white](4.5,0.5)(4.5,1)
+\endpspicture
+
+\clearpage
+\begin{verbatim}
+...
+\usepackage{multido,pstricks,pst-node}
+\def\Square{\rule{1cm}{1cm}}
+\SpecialCoor
+
+\begin{document}
+
+\vspace*{3cm}
+\pspicture[showgrid=true](5,1)%
+\Rnode{A}{\Square}\hspace{3cm}\Rnode{B}{\Square}
+\ncline[linecolor=red,linewidth=2pt,arrowscale=2,arrows=->]{A}{B}
+\endpspicture
+
+\bigskip
+\pspicture[showgrid=true](5,4)%
+\rput[lb](0,0){\Rnode{A}{\Square}\hspace{3cm}\Rnode[vref=3cm]{B}{\Square}}
+\psframe*[linecolor=black!20](4,3)(5,4)
+\pcline[linecolor=red,linestyle=dotted,linewidth=2pt](A)(B)
+\ncline[linecolor=red,linewidth=2pt,arrowscale=2,arrows=->]{A}{B}
+\pnode(4,0.7ex){C}
+\ncline[linecolor=blue,linewidth=2pt,arrowscale=2,arrows=->]{A}{C}
+\pcline{->}(4.5,0.5)(4.5,3.5)\uput[0](4.5,2){vref}
+\pcline[linecolor=white](4.5,0.5)(4.5,1)
+\endpspicture
+
+
+\bigskip
+\pspicture[showgrid=true](7,4)%
+\rput[lb](0,0){\Rnode{A}{\Square}\hspace{3cm}\Rnode[href=4,vref=3cm]{B}{\Square}}
+\psframe*[linecolor=black!20](4,3)(5,4)
+\psframe*[linecolor=black!20](6,3)(7,4)
+\psline[arrows=->](4.5,3.5)(6.5,3.5)\uput[-90](5.5,3.5){href}
+\pcline[linecolor=red,linestyle=dotted,linewidth=2pt](A)(B)
+\ncline[linecolor=red,linewidth=2pt,arrowscale=2,arrows=->]{A}{B}
+\pnode(4,0.7ex){C}
+\ncline[linecolor=blue,linewidth=2pt,arrowscale=2,arrows=->]{A}{C}
+\pcline{->}(4.5,0.5)(4.5,3.5)\uput[0](4.5,2){vref}
+\pcline[linecolor=white](4.5,0.5)(4.5,1)
+\endpspicture
+\end{verbatim}
+
+\end{document}
+
+\multido{\iA=-15+1}{30}{\rput(4,0){\pspicture(5,7)%
+  \Rnode[href=\iA,vref=3cm]{A}{\psframebox[framesep=0pt]{\hspace*{1cm}}}\hspace{2cm}\Rnode{B}{o}
+  \ncline{A}{B}\endpspicture}}%
+
+
+\endinput
+
+\documentclass[12pt,ngerman]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{pstricks,pst-node,pst-plot}
+
+\begin{document}
+
+\begin{pspicture}(-0.5,-0.5)(3,2)
+  \psaxes[axesstyle=none,labels=none,ticks=none]{->}(3,2)
+\end{pspicture}
+
+\def\test{13.444}
+\leavevmode\typeout{\numexpr\test}
+\rput(\numexpr\test,0){huhu}
+
+
+
+\rnode{A}{\psshadowbox{\parbox{4cm}{%
+\[
+\left( \frac{p_{11}p_{ij}}{p_{1j}p_{i1}} \right)\left(\frac{p_{11}p_{i'j'}}{p_{1j'}p_{i'1}}\right)
+\]}}}% 
+\hspace*{4cm}%
+\rnode{B}{\psshadowbox{\parbox{2cm}{%
+	Hier kann irgendeine Erklärung oder sonstwas stehen}}}
+\ncline[arrows=->,arrowscale=2]{A}{B}
+\naput{Und hier Text}
+
+\end{document}
+
+\documentclass[a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage[esperanto,frenchb]{babel}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{lmodern}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-all}
+\usepackage{pgffor}
+
+\title{}
+\author{}
+\date{}
+
+\definecolor{brun}{cmyk}{.4 .7 .7 0}
+
+\newcommand{\bille}[2]{\pspolygon[linearc=.2, linecolor=darkgray,
+  fillstyle=solid, fillcolor=#2,origin={#1}](-6,0)(-1.5,3.7)(1.5,3.7)(6,0)(1.5,-3.7)(-1.5,-3.7)}
+
+\newcommand{\support}[1]{%
+  \psline[linewidth=2.65, linecolor=brun](#1,-0.1)(#1,51.1)
+  \psline[linewidth=2.7, linecolor=white,origin={#1,0}])(-6.95,37.7)(6.95,37.7)
+  \psline[linewidth=0.6, linecolor=black,origin={#1,0}](-6.95,36.4)(6.95,36.4)
+  \psline[linewidth=0.6, linecolor=black,origin={#1,0}](-6.95,39)(6.95,39)%
+}
+
+\newcommand{\tige}[3]{%
+  \support{#1}
+  \ifthenelse{#2>4}{\bille{#1,43.1}{yellow}}{\bille{#1,47.25}{yellow}}
+  \ifthenelse{\(#2=0\)\or\(#2=5\)}{\foreach \m in {3.7,11.1,18.5,25.9}
+    {\bille{#1,\m}{yellow}}}{%
+      \ifthenelse{\(#2=1\)\or\(#2=6\)}{\foreach \m in {3.7,11.1,18.5,32.3}
+    {\bille{#1,\m}{yellow}}}{%
+      \ifthenelse{\(#2=2\)\or\(#2=7\)}{\foreach \m in {3.7,11.1,24.9,32.3}
+{\bille{#1,\m}{yellow}}}{%
+\ifthenelse{\(#2=3\)\or\(#2=8\)}{\foreach \m in {3.7,17.55,24.9,32.3}
+{\bille{#1,\m}{yellow}}}{%
+\ifthenelse{\(#2=4\)\or\(#2=9\)}{\foreach \m in {10.15,17.55,24.9,32.3}
+{\bille{#1,\m}{yellow}}}{%
+}}}}}
+\ifthenelse{#3=1}{\pscircle*(#1,37.7){0.8}}{}
+}
+
+\newcommand{\cadre}[1]{\psframe[linewidth=2,framearc=.1](-2.1,-2.1)(#1,53.05)}
+
+\begin{document}
+
+\psset{unit=1mm}
+
+\pspicture(43.6,53.05)                         % 43.6   = 2.05 +(3*13.85) <= 3 tiges
+\tige{6.925}{9}{0}                             %  6.925 = (1*13.85) -6.925 <= tige 1
+\tige{20.775}{0}{0}                            % 20.775 = (2*13.85) -6.925 <= tige 2
+\tige{34.625}{6}{1}                            % 34.625 = (2*13.85) -6.925 <= tige 3
+\cadre{43.6}                                   % 43.6   = 2.05 +(3*13.85) <= 3 tiges
+\endpspicture
+
+\end{document}
+
+
+
+%\documentclass[12pt,a4paper]{article}
+%\usepackage{lmodern}
+\documentclass[minion]{ttct}
+\usepackage[T1]{fontenc}
+\usepackage{pstricks,longtable,multido,textcomp}
+\begin{document}
+
+
+\pspolygon[arrowscale=5,arrows=<->](1,1)(2,3)(4,0)
+
+\vspace{2cm}
+
+\def\Loption#1{\texttt{#1}}
+\def\Lcs#1{\texttt{\textbackslash#1}}
+
+{\psset{dotscale=1.5}
+\def\multiDot#1{\multido{\nA=0+1}{5}{\psdot[dotstyle=#1]\kern1em}}
+\def\cmultiDot#1{\multido{\nA=0+1}{5}{\psdot*[dotstyle=#1]\kern1em}}
+\begin{longtable}{@{}l@{\kern2em}cc@{}}
+\caption{Summary of all dot styles}\label{tab:dotstyle}\\[-5pt]
+\emph{name} & \Lcs{psdot}    & \Lcs{psdot*}\\\hline
+\endfirsthead
+\emph{name} & \Lcs{psdot}    & \Lcs{psdot*}\\\hline
+\endhead
+\Loption{*}             & \multiDot{*}        & \cmultiDot{*} \\        
+\Loption{o}             & \multiDot{o}         & \cmultiDot{o}\\
+\Loption{Bo}            & \multiDot{Bo}        & \cmultiDot{Bo}\\
+\Loption{x}             & \multiDot{x}        & \cmultiDot{x}\\
+\Loption{+}             & \multiDot{+}        &\cmultiDot{+} \\
+\Loption{B+}            & \multiDot{B+}        & \cmultiDot{B+}\\
+\Loption{asterisk}      & \multiDot{asterisk}        & \cmultiDot{asterisk}\\
+\Loption{Basterisk}     & \multiDot{Basterisk}        & \cmultiDot{Basterisk}\\
+\Loption{oplus}         & \multiDot{oplus}     & \cmultiDot{oplus}\\
+\Loption{otimes}        & \multiDot{otimes}    & \cmultiDot{otimes}\\
+\Loption{|}             & \multiDot{|}    & \cmultiDot{|}\\
+\Loption{square}        & \multiDot{square}    & \cmultiDot{square}\\
+\Loption{Bsquare}       & \multiDot{Bsquare}   & \cmultiDot{Bsquare}\\
+\Loption{square*}       & \multiDot{square*}    & \cmultiDot{square*}\\
+\Loption{diamond}       & \multiDot{diamond}   & \cmultiDot{diamond}\\
+\Loption{Bdiamond}      & \multiDot{Bdiamond}  & \cmultiDot{Bdiamond}\\
+\Loption{diamond*}      & \multiDot{diamond*}    & \cmultiDot{diamond}\\
+\Loption{triangle}      & \multiDot{triangle}  & \cmultiDot{triangle}\\
+\Loption{Btriangle}     & \multiDot{Btriangle} & \cmultiDot{Btriangle}\\
+\Loption{triangle*}     & \multiDot{triangle*} & \cmultiDot{triangle*}\\
+\Loption{pentagon}      & \multiDot{pentagon}  & \cmultiDot{pentagon}\\
+\Loption{Bpentagon}     & \multiDot{Bpentagon} & \cmultiDot{Bpentagon}\\
+\Loption{pentagon*}     & \multiDot{pentagon*}& \cmultiDot{pentagon*}\\
+\end{longtable}
+}
+
+\end{document}
+\def\pshlabel#1{\footnotesize#1}
+\let\psvlabel\pshlabel
+
+\begin{pspicture}(4,1)
+  \psaxes[Dy=0.25]{->}(4,1)
+\end{pspicture}
+
+
+
+\end{document}

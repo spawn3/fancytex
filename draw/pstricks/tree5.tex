@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage{pst-tree}
+\SpecialCoor
+\newcommand{\TriBox}[1]{%
+\begin{pspicture}(3,1)
+  \psgrid[subgriddiv=0,gridlabels=0](3,1)
+  \dotnode*[dotscale=1.5](0.5,0.5){L-\pspred-\the\psnodecnt}
+  \rput(1.5,0.5){$#1$}
+  \dotnode*[dotscale=1.5](2.5,0.5){R-\pspred-\the\psnodecnt}
+\end{pspicture}}
+% A tree node, with three boxes
+\newcommand{\TriBoxNode}[1]{{%
+\psset{nodesepB=0}
+\TrX{\TriBox{#1}}
+\pnode(L-\pspred-\the\psnodecnt){\pssucc}}}
+% A \Tr macro, updating the position of the node above
+\newcommand{\TrX}[1]{%
+\Tr[ref=t]{#1}
+\pnode(R-\pspred){\pspred}}
+\pagestyle{empty}
+
+\begin{document}
+\psset{unit=0.5,treesep=4,levelsep=2,nodesepB=0.2}
+\pstree{\TriBoxNode{*}}
+       {\TrX{1}
+        \TrX{2}}
+\hfill
+\pstree{\TriBoxNode{*}}
+       {\pstree{\TriBoxNode{+}}
+               {\TrX{1}
+                \TrX{2}}
+        \TrX{3}}
+\hfill
+\pstree{\TriBoxNode{*}}
+       {\TrX{1}
+        \pstree{\TriBoxNode{+}}
+               {\TrX{2}
+                \TrX{3}}}
+
+\hspace{3cm}
+\pstree{\TriBoxNode{*}}
+       {\pstree{\TriBoxNode{+}}
+               {\pstree{\TriBoxNode{/}}
+                       {\TrX{1}
+                        \TrX{2}}
+                \TrX{3}}
+        \TrX{4}}
+
+\pstree[levelsep=1]
+       {\Tr{}}
+       {\pstree[levelsep=2]
+               {\TriBoxNode{*}}
+               {\TrX{1}
+                \pstree{\TriBoxNode{+}}
+                       {\TrX{2}
+                        \TrX{3}}}}
+\hfill
+\pstree[levelsep=1]
+       {\Tr{}}
+       {\pstree[levelsep=2]
+               {\TriBoxNode{*}}
+               {\pstree{\TriBoxNode{+}}
+                       {\TrX{1}
+                        \TrX{2}}
+                \TrX{3}}}
+
+\pstree[levelsep=1]
+       {\Tr{}}
+       {\pstree[levelsep=2]
+               {\TriBoxNode{*}}
+               {\pstree{\TriBoxNode{+}}
+                       {\TrX{1}
+                        \TrX{2}}
+                \pstree{\TriBoxNode{-}}
+                       {\TrX{3}
+                        \TrX{4}}}}
+
+\pstree[levelsep=1]
+       {\Tr{}}
+       {\pstree[levelsep=2]
+               {\TriBoxNode{*}}
+               {\pstree{\TriBoxNode{+}}
+                       {\TrX{1}
+                        \pstree{\TriBoxNode{-}}
+                               {\TrX{2}
+                                \TrX{3}}}
+                \pstree{\TriBoxNode{-}}
+                       {\pstree{\TriBoxNode{/}}
+                               {\TrX{4}
+                                \TrX{5}}
+                        \TrX{6}}}}
+
+\end{document}

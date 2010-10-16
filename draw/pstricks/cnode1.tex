@@ -1,0 +1,29 @@
+\documentclass{article} % voss 2006-02-21
+\usepackage{pstricks}
+\usepackage{pst-node,pst-xkey}
+\SpecialCoor
+\makeatletter
+\def\SpecialCnode{\@ifnextchar[{\SpecialCnode@i}{\SpecialCnode@i[]}}
+\def\SpecialCnode@i[#1](#2,#3)#4{{%
+  \psset{#1}
+  \cnode@ii(#2,#3){\psk@radius}{#4}%
+  \pst@dimc=\psk@radius%
+  \pnode(!#2 \pst@number\pst@dimc \pst@number\psxunit div sub #3){#4L}%
+  \pnode(!#2 \pst@number\pst@dimc \pst@number\psxunit div add #3){#4R}%
+  \pnode(!#2 #3 \pst@number\pst@dimc \pst@number\psyunit div add){#4T}%
+  \pnode(!#2 #3 \pst@number\pst@dimc \pst@number\psyunit div sub){#4B}%
+}}
+\makeatother
+\begin{document}
+
+\SpecialCnode[radius=0.75,linecolor=blue](1,0.8){d}
+\psdots(d)(dL)(dT)(dR)(dB)
+\uput[90](dT){dT}\uput[0](dR){dR}\uput[-90](dB){dB}\uput[180](dL){dL}
+%
+\SpecialCnode[linecolor=red,radius=0.5](-1,-4){c}
+\psdots(c)(cL)(cT)(cR)(cB)
+\uput[90](cT){cT}\uput[0](cR){cR}\uput[-90](cB){cB}\uput[180](cL){cL}
+%
+\nccurve[angleA=30,angleB=-30]{cR}{dR}
+
+\end{document}
