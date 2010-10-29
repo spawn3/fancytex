@@ -17,7 +17,7 @@ start(SharedLib) ->
     case erl_ddll:load_driver(".", SharedLib) of
 	ok -> ok;
 	{error, already_loaded} -> ok;
-	_ -> exit({error, could_not_load_driver})
+	_Reason -> exit({error, could_not_load_driver, _Reason})
     end,
     spawn(fun() -> init(SharedLib) end).
 

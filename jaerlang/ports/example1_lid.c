@@ -48,7 +48,7 @@ ErlDrvEntry example_driver_entry = {
     NULL                /* F_PTR outputv, reserved */
 };
 
-DRIVER_INIT(example_drv) /* must match name in driver_entry */
+DRIVER_INIT(example1_drv) /* must match name in driver_entry */
 {
     return &example_driver_entry;
 }
