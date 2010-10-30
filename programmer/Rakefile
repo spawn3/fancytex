@@ -1,0 +1,17 @@
+task :default => :compile
+
+task :compile do
+    Kernel.system("xelatex programmer.tex")
+end
+
+task :clean do
+    Kernel.system("rm -f *.aux")
+    Kernel.system("rm -f *.toc")
+    Kernel.system("rm -f *.log")
+    Kernel.system("rm -f *.out")
+    Kernel.system("rm -f *.nav")
+    Kernel.system("rm -f *.snm")
+    Kernel.system("rm -f *.dvi")
+    Kernel.system("rm -f *.dpf")
+end
+
